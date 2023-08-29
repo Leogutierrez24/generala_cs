@@ -1,0 +1,26 @@
+Trabajo Práctico Generala
+-------------------------
+
+Desarrollar el juego de la Generala para 2 jugadores. En el cual se deberá administrar los turnos
+de cada jugador, conocer el puntaje y le ganador. Calcular los valores resultantes de los tiros de
+los 5 dados según la combinatoria obtenida (Generala, Full, Póker Etc.).
+
+REQUISITOS DE LOS TP INDIVIDUALES
+---------------------------------
+
+Requisitos LUG:
+• Desarrollar el aplicativo orientado a objetos programado en C#
+• Base de datos MS SQL Server
+• Arquitectura de 4 capas mínimo.
+• Registro de usuarios con credenciales.
+• Login / Logout de jugadores
+• Registrar en una bitácora:
+	o Inicios de sesión
+	o Cierres de sesión
+	o Comienzo de partida
+	o Finalización de partida
+• Registro de estadísticas de partidas ganadas / perdidas / empatadas.
+• Registrar en un archivo XML todos los movimientos de la partida para su posterior consulta.
+• Mostrar el promedio de victorias
+• Mostrar el total acumulado de tiempo jugado por el jugador
+• Backup y Restore de la base de datos
