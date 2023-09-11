@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\Categoria.cs" />
+    <Compile Include="Clases\Tablero.cs" />
     <Compile Include="Clases\TipoCategoria.cs" />
     <Compile Include="Clases\Dado.cs" />
     <Compile Include="Clases\Jugador.cs" />

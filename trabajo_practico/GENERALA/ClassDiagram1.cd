@@ -1,42 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="GENERALA.Clases.Categoria" Collapsed="true">
+  <Class Name="GENERALA.Clases.Categoria">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAABAAAAAAAAgAAAAAACBAAAAAAAAAAAAAAQ=</HashCode>
       <FileName>Clases\Categoria.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GENERALA.Clases.Dado" Collapsed="true">
+  <Class Name="GENERALA.Clases.Dado">
     <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAQAAAAAAAAABAAAAAAAAEAAAAAACAIAAAAAABAAA=</HashCode>
       <FileName>Clases\Dado.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GENERALA.Clases.Jugador" Collapsed="true">
-    <Position X="5.75" Y="0.5" Width="1.5" />
+  <Class Name="GENERALA.Clases.Jugador">
+    <Position X="5.75" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>EAACAAAAABAABAAAAABAoAAAABAAEAAAEAAAgAIAEAA=</HashCode>
+      <HashCode>EAQiAAAAABAABABAAABAoAABAEaAEAIAEAAAAEIAEAA=</HashCode>
       <FileName>Clases\Jugador.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GENERALA.Clases.Partida" Collapsed="true">
+  <Class Name="GENERALA.Clases.Partida">
     <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAABAAAAAgBAAAAAgAAAAgACACAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAQAAAABEAAAAgBAACAAgAAAAgACACAA=</HashCode>
       <FileName>Clases\Partida.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GENERALA.Clases.Puntaje" Collapsed="true">
-    <Position X="7.5" Y="0.5" Width="1.5" />
+  <Class Name="GENERALA.Clases.Puntaje">
+    <Position X="8.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAIABwABAAAFAACAIACAwDMkQBAgAAAAABAAI=</HashCode>
+      <HashCode>AAAAAAAAIABwABAAAFAACAIACAwCIkQBAgAAAAABAAI=</HashCode>
       <FileName>Clases\Puntaje.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="GENERALA.Clases.Tablero">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAQAAAAAAAAAAgAAEBAAAAAAAAAAgACACAE=</HashCode>
+      <FileName>Clases\Tablero.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Enum Name="GENERALA.Clases.TipoCategoria" Collapsed="true">
-    <Position X="0.5" Y="2.25" Width="1.5" />
+    <Position X="0.5" Y="3.5" Width="1.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAIABQAAAAABAACAAACAAAAEABAgAAAAAAAAI=</HashCode>
       <FileName>Clases\TipoCategoria.cs</FileName>

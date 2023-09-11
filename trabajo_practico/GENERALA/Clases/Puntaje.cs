@@ -78,13 +78,6 @@ namespace GENERALA.Clases
             set { _generala = value; }
         }
 
-        private bool _generalaServida;
-        public bool GeneralaServida
-        {
-            get { return _generalaServida; }
-            set { _generalaServida = value; }
-        }
-
         public Puntaje()
         {
             Restablecer();
@@ -107,7 +100,6 @@ namespace GENERALA.Clases
             _full = 0;
             _poker = 0;
             _generala = 0;
-            _generalaServida = false;
         }
     }
 }

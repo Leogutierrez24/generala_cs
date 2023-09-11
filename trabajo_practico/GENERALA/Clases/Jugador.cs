@@ -32,10 +32,22 @@ namespace GENERALA.Clases
             get { return _categorias; }
         }
 
-        private List<Dado> _dados = new List<Dado>();
-        public List<Dado> Dados
+        private List<Dado> _dadosApartados = new List<Dado>();
+        public List<Dado> DadosApartados
         {
-            get { return _dados; }
+            get { return _dadosApartados; }
+        }
+
+        private int _puntosActuales;
+        public int PuntosActuales
+        {
+            get { return _puntosActuales; }
+        }
+
+        private int _tiros;
+        public int Tiros
+        {
+            get { return _tiros; }
         }
 
         public Jugador(string id)
@@ -72,9 +84,50 @@ namespace GENERALA.Clases
             _nombre = nombre;
         }
 
-        public void TirarDados(List<Dado> dados)
+        private void TirarDados(List<Dado> dados)
         {
-            dados.ForEach(dado => dado.ObtenerValor());
+            if (_tiros != 0)
+            {
+                dados.ForEach(dado => dado.ObtenerValor());
+                _tiros--;
+            }
+        }
+
+        public void SeleccionarDados(List<Dado> dados)
+        {
+            dados.ForEach((dado) =>
+            {
+                if (_dadosApartados.Count != 0)
+                {
+                    if (!_dadosApartados.Contains(dado))
+                    {
+                        _dadosApartados.Add(dado);
+                    }
+                } else
+                {
+                    _dadosApartados = dados;
+                }
+            });
+        }
+
+        public void QuitarDados(List<Dado> dados)
+        {
+            dados.ForEach((dado) =>
+            {
+                _dadosApartados.Remove(dado);
+            });
+        }
+
+        public Categoria CerrarCategoria(Categoria categoria)
+        {
+            Categoria categoriaPorCerrar = _categorias.Find(i => i.Tipo == categoria.Tipo);
+            categoriaPorCerrar.Cerrar();
+            return categoriaPorCerrar;
+        }
+
+        public void EstablecerTurnos()
+        {
+            _tiros = 3;
         }
     }
 }

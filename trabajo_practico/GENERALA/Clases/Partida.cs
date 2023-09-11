@@ -20,6 +20,12 @@ namespace GENERALA.Clases
             get { return _jugadores; }
         }
 
+        private Jugador _jugadorEnJuego;
+        public Jugador JugadorEnJuego
+        {
+            get { return _jugadorEnJuego; }
+        }
+
         private List<Dado> _dados = new List<Dado>();
         public List<Dado> Dados
         {
@@ -32,22 +38,25 @@ namespace GENERALA.Clases
             get { return _finJuego; }
         }
 
-        public Partida(List<Jugador> jugadores)
+        public Partida(List<Jugador> jugadores, List<Dado> dados)
         {
             _id = Guid.NewGuid().ToString();
             _jugadores = jugadores;
-            _dados = new List<Dado> { 
-                new Dado(1),
-                new Dado(2),
-                new Dado(3),
-                new Dado(4),
-                new Dado(5),
-            };
+            _dados = dados;
         }
 
         public void Finalizar()
         {
             _finJuego = true;
+        }
+
+        public void ComprobarJugador()
+        {
+            if (_jugadorEnJuego.Tiros == 0)
+            {
+                int indexJugadorActual = _jugadores.IndexOf(JugadorEnJuego);
+                _jugadorEnJuego.
+            }
         }
     }
 }
