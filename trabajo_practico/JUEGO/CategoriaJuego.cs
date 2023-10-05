@@ -1,6 +1,6 @@
-﻿namespace GENERALA.Clases
+﻿namespace JUEGO
 {
-    public enum TipoCategoria
+    public enum CategoriaJuego
     {
         Uno = 0,
         Dos = 1,
@@ -11,6 +11,6 @@
         Escalera = 6,
         Full = 7,
         Poker = 8,
-        Generala = 9
+        Generala = 9,
     }
 }
