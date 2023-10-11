@@ -44,19 +44,19 @@ namespace JUEGO
             _tiros--;
         }
 
-        public void ApartarDados(List<Dado> dados)
+        public Dado SeleccionarDado(Dado dado)
         {
+            return dado;
+        }
 
+        public List<Dado> SeleccionarDados(List<Dado> dados)
+        {
+            return dados;
         }
 
         public void EstablecerTiros()
         {
             _tiros = 3;
-        }
-
-        public void CerrarCategoria()
-        {
-
         }
     }
 }

@@ -31,5 +31,10 @@ namespace JUEGO
             Random valorAleatorio = Helper.random;
             _valor = valorAleatorio.Next(0, 7);
         }
+
+        public void Restablecer()
+        {
+            _valor = 1;
+        }
     }
 }
