@@ -8,23 +8,23 @@ namespace JUEGO
 {
     public class TablaPuntos
     {
-        private readonly List<Categoria> _categorias = new List<Categoria>();
-
-        public TablaPuntos() 
+        private List<Categoria> _categorias = new List<Categoria>();
+        public List<Categoria> Categorias
         {
-            _categorias = new List<Categoria>
-            {
-                new Categoria(CategoriaJuego.Uno),
-                new Categoria(CategoriaJuego.Dos),
-                new Categoria(CategoriaJuego.Tres),
-                new Categoria(CategoriaJuego.Cuatro),
-                new Categoria(CategoriaJuego.Cinco),
-                new Categoria(CategoriaJuego.Seis),
-                new Categoria(CategoriaJuego.Escalera),
-                new Categoria(CategoriaJuego.Full),
-                new Categoria(CategoriaJuego.Poker),
-                new Categoria(CategoriaJuego.Generala),
-            };
+            get { return _categorias; }
+            set { _categorias = value; }
+        }
+
+        private int _posicionJuego = 0;
+        public int PosicionJuego
+        {
+            get { return _posicionJuego; }
+            set { _posicionJuego = value; }
+        }
+
+        public TablaPuntos(List<Categoria> categorias) 
+        {
+            _categorias = categorias;
         }
 
         public int ObtenerPuntajeTotal()

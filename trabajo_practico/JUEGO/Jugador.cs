@@ -8,12 +8,6 @@ namespace JUEGO
 {
     public class Jugador
     {
-        private int _id;
-        public int Id
-        {
-            get { return _id; }
-        }
-
         private string _nombre;
         public string Nombre
         {
@@ -24,39 +18,39 @@ namespace JUEGO
         public TablaPuntos Puntaje
         {
             get { return _puntaje; }
+            set { _puntaje = value; }
         }
 
-        private int _tiros;
-        public int Tiros
+        private Cubilete _cubilete;
+        public Cubilete Cubilete
         {
-            get { return _tiros; }
+            get { return _cubilete; }
+            set { _cubilete = value; }
         }
 
-        public Jugador(int id, string nombre)
+        public Jugador(string nombre)
         {
-            _id = id;
             _nombre = nombre;
         }
 
-        public void TirarDados(List<Dado> dados)
+        public List<Dado> TirarDados()
         {
-            dados.ForEach(dado => dado.Tirar());
-            _tiros--;
+            return _cubilete.TirarDados();
         }
 
-        public Dado SeleccionarDado(Dado dado)
+        public void ElegirDados(List<Dado> dadosElegidos)
         {
-            return dado;
+            _cubilete.PonerDados(dadosElegidos);
         }
 
-        public List<Dado> SeleccionarDados(List<Dado> dados)
+        public void CerrarCategoria(Categoria categoriaPorCerrar)
         {
-            return dados;
+            categoriaPorCerrar.Cerrar();
         }
 
-        public void EstablecerTiros()
+        public bool TerminarTurno()
         {
-            _tiros = 3;
+            return true;
         }
     }
 }

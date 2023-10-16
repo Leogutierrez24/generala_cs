@@ -8,10 +8,10 @@ namespace JUEGO
 {
     public class Categoria
     {
-        private readonly CategoriaJuego _nombre;
-        public CategoriaJuego Nombre
+        private readonly CategoriaJuego _tipo;
+        public CategoriaJuego Tipo
         {
-            get { return _nombre; }   
+            get { return _tipo; }   
         }
 
         private int _puntos = 0;
@@ -28,7 +28,7 @@ namespace JUEGO
 
         public Categoria(CategoriaJuego categoria)
         {
-            _nombre = categoria;
+            _tipo = categoria;
         }
 
         public void EstablecerPuntos(int puntos)
