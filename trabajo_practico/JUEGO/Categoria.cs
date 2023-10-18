@@ -8,10 +8,16 @@ namespace JUEGO
 {
     public class Categoria
     {
-        private readonly CategoriaJuego _tipo;
-        public CategoriaJuego Tipo
+        private readonly CategoriaJuego _nombre;
+        public CategoriaJuego Nombre
         {
-            get { return _tipo; }   
+            get { return _nombre; }
+        }
+
+        private readonly TipoCategoria _tipo;
+        public TipoCategoria Tipo
+        {
+            get { return _tipo; }
         }
 
         private int _puntos = 0;
@@ -26,18 +32,15 @@ namespace JUEGO
             get { return _cerrada; }
         }
 
-        public Categoria(CategoriaJuego categoria)
+        public Categoria(CategoriaJuego nombre, TipoCategoria tipo)
         {
-            _tipo = categoria;
+            _nombre = nombre;
+            _tipo = tipo;
         }
 
-        public void EstablecerPuntos(int puntos)
+        public void Cerrar(int puntos)
         {
             _puntos = puntos;
-        }
-
-        public void Cerrar()
-        {
             _cerrada = true;
         }
     }

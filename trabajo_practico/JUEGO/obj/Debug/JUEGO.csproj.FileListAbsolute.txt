@@ -1,0 +1,6 @@
+I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\JUEGO\bin\Debug\JUEGO.dll
+I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\JUEGO\bin\Debug\JUEGO.pdb
+I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\JUEGO\obj\Debug\JUEGO.csproj.AssemblyReference.cache
+I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\JUEGO\obj\Debug\JUEGO.csproj.CoreCompileInputs.cache
+I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\JUEGO\obj\Debug\JUEGO.dll
+I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\JUEGO\obj\Debug\JUEGO.pdb

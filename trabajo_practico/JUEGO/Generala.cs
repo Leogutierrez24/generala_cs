@@ -58,6 +58,8 @@ namespace JUEGO
             get { return _ganador; }
         }
 
+        private bool _generalaServida = false;
+
         public Generala()
         {
             _dados = new List<Dado>
@@ -72,35 +74,57 @@ namespace JUEGO
 
             _categorias = new List<Categoria>
             {
-                new Categoria(CategoriaJuego.Uno),
-                new Categoria(CategoriaJuego.Dos),
-                new Categoria(CategoriaJuego.Tres),
-                new Categoria(CategoriaJuego.Cuatro),
-                new Categoria(CategoriaJuego.Cinco),
-                new Categoria(CategoriaJuego.Seis),
-                new Categoria(CategoriaJuego.Escalera),
-                new Categoria(CategoriaJuego.Full),
-                new Categoria(CategoriaJuego.Poker),
-                new Categoria(CategoriaJuego.Generala),
+                new Categoria(CategoriaJuego.Uno, TipoCategoria.Menor),
+                new Categoria(CategoriaJuego.Dos, TipoCategoria.Menor),
+                new Categoria(CategoriaJuego.Tres, TipoCategoria.Menor),
+                new Categoria(CategoriaJuego.Cuatro, TipoCategoria.Menor),
+                new Categoria(CategoriaJuego.Cinco, TipoCategoria.Menor),
+                new Categoria(CategoriaJuego.Seis, TipoCategoria.Menor),
+                new Categoria(CategoriaJuego.Escalera, TipoCategoria.Mayor),
+                new Categoria(CategoriaJuego.Full, TipoCategoria.Mayor),
+                new Categoria(CategoriaJuego.Poker, TipoCategoria.Mayor),
+                new Categoria(CategoriaJuego.Generala, TipoCategoria.Mayor),
             };
         }
 
         public void IniciarJuego()
         {
+            _jugadores.ForEach(jugador =>
+            {
+                jugador.TablaPuntos = new TablaPuntos();
+            });
             _turno.JugadorEnJuego = _jugadores[0];
-            RondaPosicionamiento();
+            InicializarCubilete();
             _turno.JugadorEnJuego.Cubilete = _cubilete;
         }
 
         public void FinalizarJuego()
         {
+            if (!_generalaServida)
+            {
+                DeterminarGanador();
+            }
 
+            _turno.JugadorEnJuego = null;
+        }
+
+        private void DeterminarGanador()
+        {
+            Jugador jugadorMayorPuntaje = null;
+            int mayorPuntajeObtenido = 0;
+
+            _jugadores.ForEach(jugador =>
+            {
+                int puntajeTotal = jugador.TablaPuntos.ObtenerPuntajeTotal();
+                if (puntajeTotal > mayorPuntajeObtenido) jugadorMayorPuntaje = jugador;
+            });
+
+            _ganador = jugadorMayorPuntaje;
         }
 
         public void NuevoJugador(string nombre)
         {
             Jugador nuevoJugador = new Jugador(nombre);
-            nuevoJugador.Puntaje.Categorias = _categorias;
             _jugadores.Add(nuevoJugador);
         }
 
@@ -131,29 +155,79 @@ namespace JUEGO
         }
 
 
-        // Acciones Jugador
-        public void Jugar()
+        // Acciones del jugador
+        public CategoriaServida Jugar()
         {
             Tiro tiroRealizado = _turno.JugarTurno();
             _tablero.Bitacora.Registrar(tiroRealizado);
+            CategoriaServida resultado = AnalizarTiro(tiroRealizado);
 
             if (tiroRealizado.NumeroDeTiro == 3)
             {
-                CategoriaServida resultado = AnalizarTiroPrimerTiro(tiroRealizado);
                 if (resultado == CategoriaServida.Generala)
                 {
                     _ganador = _turno.JugadorEnJuego;
                     FinalizarJuego();
                 }
-            } else
-            {
-
             }
+
+            return resultado;
         }
 
-        public void JugarPosicionamiento()
+        public void CerrarCategoria(Categoria categoria)
         {
+            int puntaje = 0;
+            if (_dadosApartados.Count != 0) RestablecerDadosApartados();
+            if (categoria.Tipo == TipoCategoria.Menor)
+            {
+                if (categoria.Nombre == CategoriaJuego.Uno) _dados.ForEach(dado => { if (dado.Valor == 1) puntaje++; });
+                else if (categoria.Nombre == CategoriaJuego.Dos) _dados.ForEach(dado => { if (dado.Valor == 2) puntaje += 2; });
+                else if (categoria.Nombre == CategoriaJuego.Tres) _dados.ForEach(dado => { if (dado.Valor == 3) puntaje += 3; });
+                else if (categoria.Nombre == CategoriaJuego.Cuatro) _dados.ForEach(dado => { if (dado.Valor == 4) puntaje += 4; });
+                else if (categoria.Nombre == CategoriaJuego.Cinco) _dados.ForEach(dado => { if (dado.Valor == 5) puntaje += 5; });
+                else if (categoria.Nombre == CategoriaJuego.Seis) _dados.ForEach(dado => { if (dado.Valor == 6) puntaje += 6; });
+            } else
+            {
+                if (categoria.Nombre == CategoriaJuego.Escalera)
+                {
+                    if (_turno.TirosDisponibles >= 2) puntaje = DeterminarEscalera(_dados) ? 25 : 0;
+                    else puntaje = DeterminarEscalera(_dados) ? 20 : 0;
+                }
+                else if (categoria.Nombre == CategoriaJuego.Full)
+                {
+                    if (_turno.TirosDisponibles >= 2) puntaje = DeterminarFull(_dados) ? 35 : 0;
+                    else puntaje = DeterminarFull(_dados) ? 30 : 0;
+                }
+                else if (categoria.Nombre == CategoriaJuego.Poker)
+                {
+                    if (_turno.TirosDisponibles >= 2) puntaje = DeterminarPoker(_dados) ? 45 : 0;
+                    else puntaje = DeterminarPoker(_dados) ? 40 : 0;
+                }
+                else if (categoria.Nombre == CategoriaJuego.Generala) puntaje = DeterminarGenerala(_dados) ? 60 : 0;
+            }
 
+            _turno.JugadorEnJuego.TablaPuntos.CerrarCategoria(categoria.Nombre, puntaje);
+        }
+
+        public void TerminarTurno()
+        {
+            bool terminarPartida = false;
+
+            _jugadores.ForEach(jugador =>
+            {
+                if (!jugador.TablaPuntos.Categorias.Exists(categoria => categoria.Cerrada == false))
+                {
+                    terminarPartida = true;
+                }
+            });
+
+            if (terminarPartida)
+            {
+                FinalizarJuego();
+            } else
+            {
+                CambiarTurno();
+            }
         }
 
         public void BloquearDadosApartados(List<Dado> dadosPorApartar)
@@ -166,40 +240,50 @@ namespace JUEGO
             });
         }
 
+        private void RestablecerDadosApartados()
+        {
+            _dadosApartados.ForEach(dado =>
+            {
+                int index = _dadosApartados.FindIndex(item => item.Id == dado.Id);
+                _dados.Add(_dados[index]);
+                _dadosApartados.RemoveAt(index);
+            });
+        }
+
         // Tiros
-        private CategoriaServida AnalizarTiroPrimerTiro(Tiro tiroPorAnalizar)
+        private CategoriaServida AnalizarTiro(Tiro tiroPorAnalizar)
         {
             // Analiza si hubo un "Tiro Servido"
-
+            CategoriaServida resultado = CategoriaServida.Ninguna;
             // escalera
             if (DeterminarEscalera(tiroPorAnalizar.DadosJugados))
             {
                 // escalera servida
-                return CategoriaServida.Escalera;
+                resultado = CategoriaServida.Escalera;
             }
 
             // full
             if (DeterminarFull(tiroPorAnalizar.DadosJugados))
             {
                 // escalera servida
-                return CategoriaServida.Full;
+               resultado = CategoriaServida.Full;
             }
 
             // poker
             if (DeterminarPoker(tiroPorAnalizar.DadosJugados))
             {
                 // poker servido
-                return CategoriaServida.Poker;
+                resultado = CategoriaServida.Poker;
             }
 
             // generala
             if (DeterminarGenerala(tiroPorAnalizar.DadosJugados))
             {
                 // Gana el juego
-                return CategoriaServida.Generala;
+               resultado = CategoriaServida.Generala;
             }
 
-
+            return resultado;
         }
 
         private bool DeterminarEscalera(List<Dado> dados)
@@ -259,22 +343,9 @@ namespace JUEGO
             return resultado;
         }
 
-
-
-        // Acciones Cubilete
+        // Acciones del cubilete
         private void InicializarCubilete()
         {
-            _cubilete.PonerDados(_dados);
-        }
-
-        private void InicializarCubiletePosicionamiento()
-        {
-            while (_dados.Count > 1)
-            {
-                _dadosApartados.Add(_dados[0]);
-                _dados.RemoveAt(0);
-            }
-
             _cubilete.PonerDados(_dados);
         }
 
@@ -305,20 +376,5 @@ namespace JUEGO
             Caso 2) se tienen que determinar qué jugadores tienen valores iguales y realizar el proceso de seleccion nuevamente
             hasta que se obtengan números diferentes.
          */
-
-        public void RondaPosicionamiento()
-        {
-           
-        }
-
-        public void DeterminarPosicionamiento()
-        {
-           
-        }
-
-        private bool DeterminarPosicionamientosRepetidos()
-        {
-            return false;
-        }
     }
 }

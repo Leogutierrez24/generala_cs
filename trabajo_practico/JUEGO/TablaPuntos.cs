@@ -15,16 +15,18 @@ namespace JUEGO
             set { _categorias = value; }
         }
 
-        private int _posicionJuego = 0;
-        public int PosicionJuego
+        private List<Jugador> _jugadores;
+
+        public List<Jugador> Jugadores
         {
-            get { return _posicionJuego; }
-            set { _posicionJuego = value; }
+            get { return _jugadores; }
+            set { _jugadores = value; }
         }
 
-        public TablaPuntos(List<Categoria> categorias) 
+        public void CerrarCategoria(CategoriaJuego nombreCategoria, int puntos)
         {
-            _categorias = categorias;
+            int categoriaIndex = _categorias.FindIndex(categoria => categoria.Nombre == nombreCategoria);
+            _categorias[categoriaIndex].Cerrar(puntos);
         }
 
         public int ObtenerPuntajeTotal()

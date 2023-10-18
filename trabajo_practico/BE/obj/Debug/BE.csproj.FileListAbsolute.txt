@@ -1,0 +1,6 @@
+I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\BE\bin\Debug\BE.dll
+I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\BE\bin\Debug\BE.pdb
+I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\BE\obj\Debug\BE.csproj.AssemblyReference.cache
+I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\BE\obj\Debug\BE.csproj.CoreCompileInputs.cache
+I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\BE\obj\Debug\BE.dll
+I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\BE\obj\Debug\BE.pdb

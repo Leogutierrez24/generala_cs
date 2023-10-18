@@ -42,14 +42,20 @@ namespace JUEGO
         {
             Tiro nuevoTiro = null;
 
-            if (_tirosDisponibles != 0)
+            if (_tirosDisponibles != 0 && !_terminado && !_jugadorEnJuego.Cubilete.Vacio)
             {
                 List<Dado> dadosObtenidos = _jugadorEnJuego.TirarDados();
                 nuevoTiro = new Tiro(_jugadorEnJuego, dadosObtenidos, _tirosDisponibles);
                 _tirosDisponibles--;
+                VerificarEstado();
             }
 
             return nuevoTiro;
+        }
+
+        private void VerificarEstado()
+        {
+            if (_tirosDisponibles == 0) _terminado = true;
         }
     }
 }

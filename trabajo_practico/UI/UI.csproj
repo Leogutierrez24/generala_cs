@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E782C602-E001-4D92-98B9-6E4C966F95F1}</ProjectGuid>
+    <ProjectGuid>{6ADA385E-E924-4A30-9C8A-8E6F7646B0C9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>UI</RootNamespace>
     <AssemblyName>UI</AssemblyName>
@@ -46,14 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Inicio_frm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Inicio_frm.Designer.cs">
+      <DependentUpon>Inicio_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Juego\Tablero_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Juego\Tablero_frm.Designer.cs">
+      <DependentUpon>Tablero_frm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Inicio_frm.resx">
+      <DependentUpon>Inicio_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Juego\Tablero_frm.resx">
+      <DependentUpon>Tablero_frm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -77,8 +89,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Generala\" />
+    <ProjectReference Include="..\BE\BE.csproj">
+      <Project>{267a8c55-177a-4090-94da-cb269b2a2342}</Project>
+      <Name>BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{c3975d08-c6e0-40f5-9ec6-3469ec018e7f}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JUEGO\JUEGO.csproj">
+      <Project>{8378b6ca-0024-438f-9126-df66ebd86c14}</Project>
+      <Name>JUEGO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Login\" />
+    <Folder Include="Usuario\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

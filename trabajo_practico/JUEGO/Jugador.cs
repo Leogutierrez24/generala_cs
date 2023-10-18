@@ -14,18 +14,18 @@ namespace JUEGO
             get { return _nombre; }
         }
 
-        private TablaPuntos _puntaje;
-        public TablaPuntos Puntaje
-        {
-            get { return _puntaje; }
-            set { _puntaje = value; }
-        }
-
         private Cubilete _cubilete;
         public Cubilete Cubilete
         {
             get { return _cubilete; }
             set { _cubilete = value; }
+        }
+
+        private TablaPuntos _tablaPuntos;
+        public TablaPuntos TablaPuntos
+        {
+            get { return _tablaPuntos; }
+            set { _tablaPuntos = value; }
         }
 
         public Jugador(string nombre)
@@ -41,16 +41,6 @@ namespace JUEGO
         public void ElegirDados(List<Dado> dadosElegidos)
         {
             _cubilete.PonerDados(dadosElegidos);
-        }
-
-        public void CerrarCategoria(Categoria categoriaPorCerrar)
-        {
-            categoriaPorCerrar.Cerrar();
-        }
-
-        public bool TerminarTurno()
-        {
-            return true;
         }
     }
 }

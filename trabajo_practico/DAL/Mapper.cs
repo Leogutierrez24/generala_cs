@@ -8,9 +8,11 @@ namespace DAL
 {
     public abstract class Mapper<T>
     {
-        public abstract void Insertar();
+        public abstract void Insertar(T obj);
 
-        public abstract void Actualizar();
+        public abstract void Actualizar(T obj);
+
+        public abstract void Borrar(T obj);
 
         public abstract T Listar();
 
