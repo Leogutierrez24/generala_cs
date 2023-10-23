@@ -19,6 +19,7 @@ namespace JUEGO
         public int TirosDisponibles
         {
             get { return _tirosDisponibles; }
+            set { _tirosDisponibles = value; }
         }
 
         private bool _terminado = false;
@@ -27,15 +28,16 @@ namespace JUEGO
             get { return _terminado; }
         }
 
-        public void Terminar()
+        public Turno(Jugador jugador, int tirosDisponibles = 3)
         {
-            _jugadorEnJuego.Cubilete = null;
-            _terminado = true;
+            _jugadorEnJuego = jugador;
+            _tirosDisponibles = tirosDisponibles;
         }
 
-        public void EstablecerTiros(int cantidad = 3)
+        public void Terminar()
         {
-            _tirosDisponibles = cantidad;
+            _tirosDisponibles = 0;
+            _terminado = true;
         }
 
         public Tiro JugarTurno()
@@ -47,15 +49,15 @@ namespace JUEGO
                 List<Dado> dadosObtenidos = _jugadorEnJuego.TirarDados();
                 nuevoTiro = new Tiro(_jugadorEnJuego, dadosObtenidos, _tirosDisponibles);
                 _tirosDisponibles--;
-                VerificarEstado();
+                VerificarTirosDisponibles();
             }
 
             return nuevoTiro;
         }
 
-        private void VerificarEstado()
+        private void VerificarTirosDisponibles()
         {
-            if (_tirosDisponibles == 0) _terminado = true;
+            if (_tirosDisponibles == 0) Terminar();
         }
     }
 }

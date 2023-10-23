@@ -27,6 +27,13 @@ namespace JUEGO
             get { return _numeroDeTiro; }
         }
 
+        private CategoriaServida _categoriaServida;
+        public CategoriaServida CategoriaServida
+        {
+            get { return _categoriaServida; }
+            set { _categoriaServida = value; }
+        }
+
         public Tiro(Jugador jugador, List<Dado> dadosJugados, int numeroTiro)
         {
             _jugador = jugador;

@@ -18,3 +18,4 @@ I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\bin\Debug\BLL.pdb
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\bin\Debug\DAL.pdb
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Inicio_frm.resources
+I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Juego.Reglas_frm.resources

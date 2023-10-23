@@ -16,7 +16,7 @@ namespace UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Inicio_frm());
+            Application.Run(new Juego.Tablero_frm());
         }
     }
 }

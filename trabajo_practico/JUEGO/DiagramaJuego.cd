@@ -10,7 +10,7 @@
   <Class Name="JUEGO.Dado">
     <Position X="6.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAABAAABAAAAEAAAAAAAAAAAAAEABAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAABEAABAAAAEAAAAAAAAAAAAAEABAAA=</HashCode>
       <FileName>Dado.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -36,7 +36,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="JUEGO.Tablero">
-    <Position X="12" Y="4" Width="1.5" />
+    <Position X="8.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAgAAAAAAAAAAQAAAA=</HashCode>
       <FileName>Tablero.cs</FileName>

@@ -9,44 +9,38 @@ namespace JUEGO
 {
     public class Generala
     {
-        private List<Dado> _dados = new List<Dado>();
+        /* PROPIEDADES */
+        private readonly List<Dado> _dados = new List<Dado>();
         public List<Dado> Dados
         {
             get { return _dados; }
         }
 
-        private List<Dado> _dadosApartados = new List<Dado>();
-        public List<Dado> DadosApartados
-        {
-            get { return _dadosApartados; }
-        }
-
-        private Cubilete _cubilete = new Cubilete();
+        private readonly Cubilete _cubilete = new Cubilete();
         public Cubilete Cubilete
         {
             get { return _cubilete; }
         }
 
-        private List<Categoria> _categorias = new List<Categoria>();
+        private readonly List<Categoria> _categorias = new List<Categoria>();
         public List<Categoria> Categorias
         {
             get { return _categorias; }
         }
 
-        private List<Jugador> _jugadores = new List<Jugador>();
+        private readonly List<Jugador> _jugadores = new List<Jugador>();
         public List<Jugador> Jugadores
         {
             get { return _jugadores; }
         }
 
-        private Turno _turno = new Turno();
+        private Turno _turno;
         public Turno Turno
         {
             get { return _turno; }
         }
 
-        private Tablero _tablero = new Tablero();
-
+        private readonly Tablero _tablero;
         public Tablero Tablero
         {
             get { return _tablero; }
@@ -60,6 +54,8 @@ namespace JUEGO
 
         private bool _generalaServida = false;
 
+        /* MÉTODOS */
+
         public Generala()
         {
             _dados = new List<Dado>
@@ -69,7 +65,6 @@ namespace JUEGO
                 new Dado(3),
                 new Dado(4),
                 new Dado(5),
-                new Dado(6),
             };
 
             _categorias = new List<Categoria>
@@ -85,6 +80,8 @@ namespace JUEGO
                 new Categoria(CategoriaJuego.Poker, TipoCategoria.Mayor),
                 new Categoria(CategoriaJuego.Generala, TipoCategoria.Mayor),
             };
+
+            _tablero = new Tablero(_dados);
         }
 
         public void IniciarJuego()
@@ -93,9 +90,7 @@ namespace JUEGO
             {
                 jugador.TablaPuntos = new TablaPuntos();
             });
-            _turno.JugadorEnJuego = _jugadores[0];
-            InicializarCubilete();
-            _turno.JugadorEnJuego.Cubilete = _cubilete;
+            NuevoTurno(_jugadores[0]);
         }
 
         public void FinalizarJuego()
@@ -133,35 +128,33 @@ namespace JUEGO
             _jugadores.Remove(jugador);
         }
 
-        public void CambiarTurno()
+        // Métodos del TABLERO
+        private void RestablecerTablero()
         {
-            Jugador jugadorEnJuego = _turno.JugadorEnJuego;
-            Jugador nuevoJugador;
-            int indexJugador = _jugadores.IndexOf(jugadorEnJuego);
-
-            if (indexJugador == _jugadores.Count - 1)
-            {
-                nuevoJugador = _jugadores[0];
-            } else
-            {
-                nuevoJugador = _jugadores[indexJugador + 1];
-            }
-
-            _turno.Terminar();
-            _turno.JugadorEnJuego = nuevoJugador;
-            RestablecerCubilete();
-            _turno.JugadorEnJuego.Cubilete = _cubilete;
-            _turno.EstablecerTiros();
+            _tablero.RestablecerDadosApartados();
         }
 
-
-        // Acciones del jugador
-        public CategoriaServida Jugar()
+        // Métodos del JUGADOR
+        public Tiro Jugar()
         {
-            Tiro tiroRealizado = _turno.JugarTurno();
-            _tablero.Bitacora.Registrar(tiroRealizado);
-            CategoriaServida resultado = AnalizarTiro(tiroRealizado);
+            Tiro tiroRealizado;
+            if (_tablero.DadosEnTablero.Count == 0)
+            {
+                tiroRealizado = _turno.JugarTurno();
+                CategoriaServida catServida = ComprobarCategoriaObtenida(tiroRealizado);
+                if (catServida != CategoriaServida.Ninguna) tiroRealizado.CategoriaServida = catServida;
+                _tablero.PonerDadosEnTablero(tiroRealizado.DadosJugados);
+            } else
+            {
+                tiroRealizado = null;
+            }
 
+            return tiroRealizado;
+        }
+
+        private CategoriaServida ComprobarCategoriaObtenida(Tiro tiroRealizado)
+        {
+            CategoriaServida resultado = AnalizarTiro(tiroRealizado);
             if (tiroRealizado.NumeroDeTiro == 3)
             {
                 if (resultado == CategoriaServida.Generala)
@@ -174,10 +167,10 @@ namespace JUEGO
             return resultado;
         }
 
-        public void CerrarCategoria(Categoria categoria)
+        public void PuntuarCerrarCategoria(Categoria categoria)
         {
             int puntaje = 0;
-            if (_dadosApartados.Count != 0) RestablecerDadosApartados();
+            if (_tablero.DadosApartados.Count != 0) _tablero.RestablecerDadosApartados();
             if (categoria.Tipo == TipoCategoria.Menor)
             {
                 if (categoria.Nombre == CategoriaJuego.Uno) _dados.ForEach(dado => { if (dado.Valor == 1) puntaje++; });
@@ -209,6 +202,51 @@ namespace JUEGO
             _turno.JugadorEnJuego.TablaPuntos.CerrarCategoria(categoria.Nombre, puntaje);
         }
 
+        public int PonerDadosCubilete(List<Dado> dados)
+        {
+            int resultado;
+            if (_cubilete.Dados.Count + dados.Count <= 5)
+            {
+                _tablero.PonerDadosEnCubilete(dados);
+                _turno.JugadorEnJuego.ElegirDados(dados);
+                resultado = 0;
+            } else
+            {
+                resultado = -1;
+            }
+            return resultado;
+        }
+
+
+        // Métodos de TURNO
+        private void NuevoTurno(Jugador jugador)
+        {
+            InicializarCubilete();
+            jugador.Cubilete = _cubilete;
+            _turno = new Turno(jugador);
+        }
+
+        public void CambiarTurno()
+        {
+            Jugador jugadorEnJuego = _turno.JugadorEnJuego;
+            jugadorEnJuego.Cubilete = null;
+            Jugador nuevoJugador;
+            int indexJugador = _jugadores.IndexOf(jugadorEnJuego);
+
+            if (indexJugador == _jugadores.Count - 1)
+            {
+                nuevoJugador = _jugadores[0];
+            }
+            else
+            {
+                nuevoJugador = _jugadores[indexJugador + 1];
+            }
+
+            _turno.Terminar();
+            NuevoTurno(nuevoJugador);
+            RestablecerTablero();
+        }
+
         public void TerminarTurno()
         {
             bool terminarPartida = false;
@@ -230,27 +268,14 @@ namespace JUEGO
             }
         }
 
-        public void BloquearDadosApartados(List<Dado> dadosPorApartar)
+        // Métodos del CUBILETE
+        private void InicializarCubilete()
         {
-            dadosPorApartar.ForEach(dado =>
-            {
-                int index = _dados.FindIndex(item => item.Id == dado.Id);
-                _dadosApartados.Add(_dados[index]);
-                _dados.RemoveAt(index);
-            });
+            _cubilete.PonerDados(_dados);
+            _tablero.PonerDadosEnCubilete(_dados);
         }
 
-        private void RestablecerDadosApartados()
-        {
-            _dadosApartados.ForEach(dado =>
-            {
-                int index = _dadosApartados.FindIndex(item => item.Id == dado.Id);
-                _dados.Add(_dados[index]);
-                _dadosApartados.RemoveAt(index);
-            });
-        }
-
-        // Tiros
+        // Métodos de los TIROS
         private CategoriaServida AnalizarTiro(Tiro tiroPorAnalizar)
         {
             // Analiza si hubo un "Tiro Servido"
@@ -343,28 +368,8 @@ namespace JUEGO
             return resultado;
         }
 
-        // Acciones del cubilete
-        private void InicializarCubilete()
-        {
-            _cubilete.PonerDados(_dados);
-        }
-
-        public void RestablecerCubilete()
-        {
-            if (_dadosApartados.Count > 0)
-            {
-                while (_dadosApartados.Count != 0)
-                {
-                    _dados.Add(_dadosApartados[0]);
-                    _dadosApartados.RemoveAt(0);
-                }
-            }
-
-            _dados.ForEach(dado => dado.Restablecer());
-
-            _cubilete.PonerDados(_dados);
-        }
-
+        // Métodos del TABLERO
+          
 
         /*  Ronda que determina el orden de juego que va a tener c/jugador.
             

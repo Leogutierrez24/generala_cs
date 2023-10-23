@@ -29,12 +29,17 @@ namespace JUEGO
         public void Tirar()
         {
             Random valorAleatorio = Helper.random;
-            _valor = valorAleatorio.Next(0, 7);
+            _valor = valorAleatorio.Next(1, 7);
         }
 
         public void Restablecer()
         {
             _valor = 1;
+        }
+
+        public override string ToString()
+        {
+            return $"Nro: {_id} | Valor: {_valor}";
         }
     }
 }
