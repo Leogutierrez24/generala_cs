@@ -42,10 +42,11 @@
             this.Jugador_groupBox = new System.Windows.Forms.GroupBox();
             this.TerminarTurno_btn = new System.Windows.Forms.Button();
             this.CerrarCategoria_btn = new System.Windows.Forms.Button();
+            this.TirarDados_btn = new System.Windows.Forms.Button();
             this.ApartarDados_btn = new System.Windows.Forms.Button();
             this.PonerDados_btn = new System.Windows.Forms.Button();
-            this.TirarDados_btn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.PonerTodos_btn = new System.Windows.Forms.Button();
             this.Ayuda_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Tablero_dataGridView)).BeginInit();
             this.Jugador_groupBox.SuspendLayout();
@@ -120,7 +121,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(419, 197);
+            this.label7.Location = new System.Drawing.Point(419, 272);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(88, 13);
             this.label7.TabIndex = 6;
@@ -129,7 +130,7 @@
             // DadosApartados_listBox
             // 
             this.DadosApartados_listBox.FormattingEnabled = true;
-            this.DadosApartados_listBox.Location = new System.Drawing.Point(422, 213);
+            this.DadosApartados_listBox.Location = new System.Drawing.Point(422, 288);
             this.DadosApartados_listBox.Name = "DadosApartados_listBox";
             this.DadosApartados_listBox.Size = new System.Drawing.Size(233, 160);
             this.DadosApartados_listBox.TabIndex = 5;
@@ -156,8 +157,6 @@
             // 
             this.Jugador_groupBox.Controls.Add(this.TerminarTurno_btn);
             this.Jugador_groupBox.Controls.Add(this.CerrarCategoria_btn);
-            this.Jugador_groupBox.Controls.Add(this.ApartarDados_btn);
-            this.Jugador_groupBox.Controls.Add(this.PonerDados_btn);
             this.Jugador_groupBox.Controls.Add(this.TirarDados_btn);
             this.Jugador_groupBox.Controls.Add(this.label4);
             this.Jugador_groupBox.Controls.Add(this.Tiros_lbl);
@@ -172,25 +171,38 @@
             // 
             // TerminarTurno_btn
             // 
-            this.TerminarTurno_btn.Location = new System.Drawing.Point(116, 216);
+            this.TerminarTurno_btn.Location = new System.Drawing.Point(141, 126);
             this.TerminarTurno_btn.Name = "TerminarTurno_btn";
             this.TerminarTurno_btn.Size = new System.Drawing.Size(95, 32);
             this.TerminarTurno_btn.TabIndex = 11;
             this.TerminarTurno_btn.Text = "Terminar Turno";
             this.TerminarTurno_btn.UseVisualStyleBackColor = true;
+            this.TerminarTurno_btn.Click += new System.EventHandler(this.TerminarTurno_btn_Click);
             // 
             // CerrarCategoria_btn
             // 
-            this.CerrarCategoria_btn.Location = new System.Drawing.Point(15, 216);
+            this.CerrarCategoria_btn.Location = new System.Drawing.Point(141, 88);
             this.CerrarCategoria_btn.Name = "CerrarCategoria_btn";
             this.CerrarCategoria_btn.Size = new System.Drawing.Size(95, 32);
             this.CerrarCategoria_btn.TabIndex = 10;
             this.CerrarCategoria_btn.Text = "Cerrar Categoria";
             this.CerrarCategoria_btn.UseVisualStyleBackColor = true;
+            this.CerrarCategoria_btn.Click += new System.EventHandler(this.CerrarCategoria_btn_Click);
+            // 
+            // TirarDados_btn
+            // 
+            this.TirarDados_btn.Location = new System.Drawing.Point(141, 50);
+            this.TirarDados_btn.Name = "TirarDados_btn";
+            this.TirarDados_btn.Size = new System.Drawing.Size(95, 32);
+            this.TirarDados_btn.TabIndex = 7;
+            this.TirarDados_btn.Text = "Tirar Dados";
+            this.TirarDados_btn.UseVisualStyleBackColor = true;
+            this.TirarDados_btn.Click += new System.EventHandler(this.TirarDados_btn_Click);
             // 
             // ApartarDados_btn
             // 
-            this.ApartarDados_btn.Location = new System.Drawing.Point(141, 126);
+            this.ApartarDados_btn.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.ApartarDados_btn.Location = new System.Drawing.Point(566, 175);
             this.ApartarDados_btn.Name = "ApartarDados_btn";
             this.ApartarDados_btn.Size = new System.Drawing.Size(89, 32);
             this.ApartarDados_btn.TabIndex = 9;
@@ -200,42 +212,50 @@
             // 
             // PonerDados_btn
             // 
-            this.PonerDados_btn.Location = new System.Drawing.Point(141, 88);
+            this.PonerDados_btn.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.PonerDados_btn.Location = new System.Drawing.Point(422, 175);
             this.PonerDados_btn.Name = "PonerDados_btn";
-            this.PonerDados_btn.Size = new System.Drawing.Size(89, 32);
+            this.PonerDados_btn.Size = new System.Drawing.Size(89, 41);
             this.PonerDados_btn.TabIndex = 8;
-            this.PonerDados_btn.Text = "Poner Dados";
+            this.PonerDados_btn.Text = "Agregar dados al cubilete";
             this.PonerDados_btn.UseVisualStyleBackColor = true;
             this.PonerDados_btn.Click += new System.EventHandler(this.PonerDados_btn_Click);
             // 
-            // TirarDados_btn
-            // 
-            this.TirarDados_btn.Location = new System.Drawing.Point(141, 50);
-            this.TirarDados_btn.Name = "TirarDados_btn";
-            this.TirarDados_btn.Size = new System.Drawing.Size(89, 32);
-            this.TirarDados_btn.TabIndex = 7;
-            this.TirarDados_btn.Text = "Tirar Dados";
-            this.TirarDados_btn.UseVisualStyleBackColor = true;
-            this.TirarDados_btn.Click += new System.EventHandler(this.TirarDados_btn_Click);
-            // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox2.BackgroundImage = global::UI.Properties.Resources.tablero_background;
+            this.groupBox2.Controls.Add(this.PonerTodos_btn);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.DadosEnTablero_listBox);
+            this.groupBox2.Controls.Add(this.PonerDados_btn);
+            this.groupBox2.Controls.Add(this.ApartarDados_btn);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.Tablero_dataGridView);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.DadosApartados_listBox);
+            this.groupBox2.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox2.Location = new System.Drawing.Point(12, 38);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(674, 392);
+            this.groupBox2.Size = new System.Drawing.Size(674, 462);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tablero";
             // 
+            // PonerTodos_btn
+            // 
+            this.PonerTodos_btn.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.PonerTodos_btn.Location = new System.Drawing.Point(422, 222);
+            this.PonerTodos_btn.Name = "PonerTodos_btn";
+            this.PonerTodos_btn.Size = new System.Drawing.Size(89, 41);
+            this.PonerTodos_btn.TabIndex = 10;
+            this.PonerTodos_btn.Text = "Agregar todos";
+            this.PonerTodos_btn.UseVisualStyleBackColor = true;
+            this.PonerTodos_btn.Click += new System.EventHandler(this.PonerTodos_btn_Click);
+            // 
             // Ayuda_btn
             // 
-            this.Ayuda_btn.Location = new System.Drawing.Point(866, 410);
+            this.Ayuda_btn.Location = new System.Drawing.Point(866, 477);
             this.Ayuda_btn.Name = "Ayuda_btn";
             this.Ayuda_btn.Size = new System.Drawing.Size(75, 23);
             this.Ayuda_btn.TabIndex = 11;
@@ -247,7 +267,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(953, 445);
+            this.ClientSize = new System.Drawing.Size(953, 545);
             this.Controls.Add(this.Ayuda_btn);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.Jugador_groupBox);
@@ -286,5 +306,6 @@
         private System.Windows.Forms.Button TirarDados_btn;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button Ayuda_btn;
+        private System.Windows.Forms.Button PonerTodos_btn;
     }
 }

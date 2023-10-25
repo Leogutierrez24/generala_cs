@@ -20,15 +20,15 @@ namespace JUEGO
             get { return _dadosApartados; }
         }
 
-        private List<Dado> _dadosEnCubilete = new List<Dado>();
-        public List<Dado> DadosEnCubilete
+        private Cubilete _cubilete;
+        public Cubilete Cubilete
         {
-            get { return _dadosEnCubilete; }
+            get { return _cubilete; }
         }
         
-        public Tablero(List<Dado> dados) 
+        public Tablero(Cubilete cubilete) 
         { 
-            _dadosEnTablero = dados;
+            _cubilete = cubilete;
         }
 
         public void PonerDadosEnTablero(List<Dado> dados)
@@ -36,10 +36,9 @@ namespace JUEGO
             dados.ForEach(dado => _dadosEnTablero.Add(dado));
         }
 
-        public void PonerDadosEnCubilete(List<Dado> dados)
+        public void QuitarDadoTablero(List<Dado> dados)
         {
-            dados.ForEach(dado => _dadosEnCubilete.Add(dado));
-            _dadosEnCubilete.ForEach(dadoEnCubilete => _dadosEnTablero.Remove(dadoEnCubilete));
+            dados.ForEach(dado => _dadosEnTablero.Remove(dado));
         }
 
         public void ApartarDados(List<Dado> dados)

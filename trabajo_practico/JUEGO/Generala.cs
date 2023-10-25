@@ -55,7 +55,6 @@ namespace JUEGO
         private bool _generalaServida = false;
 
         /* MÉTODOS */
-
         public Generala()
         {
             _dados = new List<Dado>
@@ -81,7 +80,7 @@ namespace JUEGO
                 new Categoria(CategoriaJuego.Generala, TipoCategoria.Mayor),
             };
 
-            _tablero = new Tablero(_dados);
+            _tablero = new Tablero(_cubilete);
         }
 
         public void IniciarJuego()
@@ -207,8 +206,8 @@ namespace JUEGO
             int resultado;
             if (_cubilete.Dados.Count + dados.Count <= 5)
             {
-                _tablero.PonerDadosEnCubilete(dados);
                 _turno.JugadorEnJuego.ElegirDados(dados);
+                _tablero.QuitarDadoTablero(dados);
                 resultado = 0;
             } else
             {
@@ -272,7 +271,6 @@ namespace JUEGO
         private void InicializarCubilete()
         {
             _cubilete.PonerDados(_dados);
-            _tablero.PonerDadosEnCubilete(_dados);
         }
 
         // Métodos de los TIROS

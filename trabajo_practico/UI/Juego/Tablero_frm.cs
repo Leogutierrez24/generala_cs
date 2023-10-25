@@ -15,6 +15,8 @@ namespace UI.Juego
     {
         public Generala generala;
 
+        public bool TableroVacio = false;
+
         public Tablero_frm()
         {
             InitializeComponent();
@@ -75,12 +77,14 @@ namespace UI.Juego
 
             if (generala.Tablero.DadosEnTablero.Count > 0)
             {
+                TableroVacio = false;
                 generala.Tablero.DadosEnTablero.ForEach(dado =>
                 {
                     DadosEnTablero_listBox.Items.Add(dado);
                 });
             } else
             {
+                TableroVacio = true;
                 DadosEnTablero_listBox.Items.Add("No hay dados en el tablero");
             }
             
@@ -116,6 +120,9 @@ namespace UI.Juego
             if (generala.Turno.TirosDisponibles == 0)
             {
                 TirarDados_btn.Enabled = false;
+                PonerDados_btn.Enabled = false;
+                PonerTodos_btn.Enabled = false;
+                ApartarDados_btn.Enabled = false;
             }
         }
 
@@ -147,6 +154,16 @@ namespace UI.Juego
             {
                 MessageBox.Show("¡Todavía hay dados en el tablero!");
             }
+        }
+
+        private void CerrarCategoria_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TerminarTurno_btn_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void PonerDados_btn_Click(object sender, EventArgs e)
@@ -187,11 +204,27 @@ namespace UI.Juego
             }
         }
 
+        private void PonerTodos_btn_Click(object sender, EventArgs e)
+        {
+            if (!TableroVacio)
+            {
+                List<Dado> todosDados = new List<Dado>();
+                foreach (object dado in DadosEnTablero_listBox.Items)
+                {
+                    todosDados.Add(dado as Dado);
+                }
+                generala.PonerDadosCubilete(todosDados);
+                ActualizarDados();
+                ActualizarCubilete();
+            } else
+            {
+                MessageBox.Show("No hay dados para agregar.");
+            }
+        }
         private void Ayuda_btn_Click(object sender, EventArgs e)
         {
             Reglas_frm frm = new Reglas_frm();
             frm.ShowDialog();
         }
-
     }
 }
