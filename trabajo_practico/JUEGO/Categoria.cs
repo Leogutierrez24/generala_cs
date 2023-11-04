@@ -43,5 +43,10 @@ namespace JUEGO
             _puntos = puntos;
             _cerrada = true;
         }
+
+        public override string ToString()
+        {
+            return $"{_nombre}";
+        }
     }
 }

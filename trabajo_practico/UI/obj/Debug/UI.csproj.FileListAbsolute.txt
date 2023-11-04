@@ -19,3 +19,28 @@ I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\bin\Debug\DAL.pdb
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Inicio_frm.resources
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Juego.Reglas_frm.resources
+D:\generala_cs-main\trabajo_practico\UI\bin\Debug\UI.exe.config
+D:\generala_cs-main\trabajo_practico\UI\bin\Debug\UI.exe
+D:\generala_cs-main\trabajo_practico\UI\bin\Debug\UI.pdb
+D:\generala_cs-main\trabajo_practico\UI\bin\Debug\BE.dll
+D:\generala_cs-main\trabajo_practico\UI\bin\Debug\BLL.dll
+D:\generala_cs-main\trabajo_practico\UI\bin\Debug\JUEGO.dll
+D:\generala_cs-main\trabajo_practico\UI\bin\Debug\DAL.dll
+D:\generala_cs-main\trabajo_practico\UI\bin\Debug\BE.pdb
+D:\generala_cs-main\trabajo_practico\UI\bin\Debug\BLL.pdb
+D:\generala_cs-main\trabajo_practico\UI\bin\Debug\JUEGO.pdb
+D:\generala_cs-main\trabajo_practico\UI\bin\Debug\DAL.pdb
+D:\generala_cs-main\trabajo_practico\UI\obj\Debug\UI.csproj.AssemblyReference.cache
+D:\generala_cs-main\trabajo_practico\UI\obj\Debug\UI.Inicio_frm.resources
+D:\generala_cs-main\trabajo_practico\UI\obj\Debug\UI.Juego.Reglas_frm.resources
+D:\generala_cs-main\trabajo_practico\UI\obj\Debug\UI.Juego.Tablero_frm.resources
+D:\generala_cs-main\trabajo_practico\UI\obj\Debug\UI.Properties.Resources.resources
+D:\generala_cs-main\trabajo_practico\UI\obj\Debug\UI.csproj.GenerateResource.cache
+D:\generala_cs-main\trabajo_practico\UI\obj\Debug\UI.csproj.CoreCompileInputs.cache
+D:\generala_cs-main\trabajo_practico\UI\obj\Debug\UI.csproj.CopyComplete
+D:\generala_cs-main\trabajo_practico\UI\obj\Debug\UI.exe
+D:\generala_cs-main\trabajo_practico\UI\obj\Debug\UI.pdb
+D:\generala_cs-main\trabajo_practico\UI\obj\Debug\UI.Juego.CerrarCategoria_frm.resources
+D:\generala_cs-main\trabajo_practico\UI\obj\Debug\UI.Promps.Prompt_frm.resources
+I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Juego.CerrarCategoria_frm.resources
+I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Promps.Prompt_frm.resources

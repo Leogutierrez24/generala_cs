@@ -26,6 +26,13 @@ namespace JUEGO
             _valor = 0;
         }
 
+        /*Test
+        public Dado(int id, int valor)
+        {
+            _id = id;
+            _valor = valor;
+        }*/
+
         public void Tirar()
         {
             Random valorAleatorio = Helper.random;

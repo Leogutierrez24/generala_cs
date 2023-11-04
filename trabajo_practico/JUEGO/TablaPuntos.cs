@@ -15,12 +15,21 @@ namespace JUEGO
             set { _categorias = value; }
         }
 
-        private List<Jugador> _jugadores;
-
-        public List<Jugador> Jugadores
+        public TablaPuntos()
         {
-            get { return _jugadores; }
-            set { _jugadores = value; }
+            List<Categoria> categorias = new List<Categoria> {
+                new Categoria(CategoriaJuego.Uno, TipoCategoria.Menor),
+                new Categoria(CategoriaJuego.Dos, TipoCategoria.Menor),
+                new Categoria(CategoriaJuego.Tres, TipoCategoria.Menor),
+                new Categoria(CategoriaJuego.Cuatro, TipoCategoria.Menor),
+                new Categoria(CategoriaJuego.Cinco, TipoCategoria.Menor),
+                new Categoria(CategoriaJuego.Seis, TipoCategoria.Menor),
+                new Categoria(CategoriaJuego.Escalera, TipoCategoria.Mayor),
+                new Categoria(CategoriaJuego.Full, TipoCategoria.Mayor),
+                new Categoria(CategoriaJuego.Poker, TipoCategoria.Mayor),
+                new Categoria(CategoriaJuego.Generala, TipoCategoria.Mayor),
+            };
+            _categorias = categorias;
         }
 
         public void CerrarCategoria(CategoriaJuego nombreCategoria, int puntos)

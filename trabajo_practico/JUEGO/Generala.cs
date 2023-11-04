@@ -140,8 +140,11 @@ namespace JUEGO
             if (_tablero.DadosEnTablero.Count == 0)
             {
                 tiroRealizado = _turno.JugarTurno();
-                CategoriaServida catServida = ComprobarCategoriaObtenida(tiroRealizado);
-                if (catServida != CategoriaServida.Ninguna) tiroRealizado.CategoriaServida = catServida;
+                if (tiroRealizado.NumeroDeTiro == 3)
+                {
+                    CategoriaServida catServida = ComprobarCategoriaObtenida(tiroRealizado);
+                    if (catServida != CategoriaServida.Ninguna) tiroRealizado.CategoriaServida = catServida;
+                }
                 _tablero.PonerDadosEnTablero(tiroRealizado.DadosJugados);
             } else
             {
@@ -169,7 +172,6 @@ namespace JUEGO
         public void PuntuarCerrarCategoria(Categoria categoria)
         {
             int puntaje = 0;
-            if (_tablero.DadosApartados.Count != 0) _tablero.RestablecerDadosApartados();
             if (categoria.Tipo == TipoCategoria.Menor)
             {
                 if (categoria.Nombre == CategoriaJuego.Uno) _dados.ForEach(dado => { if (dado.Valor == 1) puntaje++; });
@@ -316,9 +318,9 @@ namespace JUEGO
                 !dados.Exists(dado => dado.Valor == 4) || !dados.Exists(dado => dado.Valor == 5)){
                 resultado = false;
             } else {
-                if (!dados.Exists(dado => dado.Valor == 1) || !dados.Exists(dado => dado.Valor == 6))
+                if (dados.Exists(dado => dado.Valor == 1) || dados.Exists(dado => dado.Valor == 6))
                 {
-                    resultado = false;
+                    resultado = true;
                 }
             }
 

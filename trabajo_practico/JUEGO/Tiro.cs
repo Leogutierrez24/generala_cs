@@ -21,13 +21,13 @@ namespace JUEGO
             get { return _jugador; }
         }
 
-        private int _numeroDeTiro;
+        private readonly int _numeroDeTiro;
         public int NumeroDeTiro
         {
             get { return _numeroDeTiro; }
         }
 
-        private CategoriaServida _categoriaServida;
+        private CategoriaServida _categoriaServida = CategoriaServida.Ninguna;
         public CategoriaServida CategoriaServida
         {
             get { return _categoriaServida; }

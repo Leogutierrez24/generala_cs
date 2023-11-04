@@ -28,9 +28,9 @@ namespace UI.Juego
             generala.NuevoJugador("Jugador 01");
             generala.NuevoJugador("Jugador 02");
 
-            CrearTablero();
 
             generala.IniciarJuego();
+            CrearTablero();
             this.ComenzarJuego();
         }
 
@@ -47,6 +47,19 @@ namespace UI.Juego
             {
                 Tablero_dataGridView.Rows.Add(categoria.Nombre);
             });
+
+            ActualizarPuntajes();
+        }
+
+        private void ActualizarPuntajes()
+        {
+            for (int i = 0; i < generala.Jugadores.Count; i++)
+            {
+                for (int j = 0; j < generala.Categorias.Count; j++)
+                {
+                    Tablero_dataGridView.Rows[j].Cells[i + 1].Value = generala.Jugadores[i].TablaPuntos.Categorias[j].Puntos;
+                }
+            }
         }
 
         private void ActualizarJugador()
@@ -87,7 +100,6 @@ namespace UI.Juego
                 TableroVacio = true;
                 DadosEnTablero_listBox.Items.Add("No hay dados en el tablero");
             }
-            
         }
 
         private void ActualizarDadosApartados()
@@ -126,6 +138,11 @@ namespace UI.Juego
             }
         }
 
+        private void DetectarJuegoServido(Tiro tiro)
+        {
+            if (tiro.CategoriaServida != CategoriaServida.Ninguna) MessageBox.Show("¡Categoria servida obtenida!\n" + tiro.CategoriaServida);       
+        }
+
         // Acciones del Juego
         private void ComenzarJuego()
         {
@@ -142,7 +159,8 @@ namespace UI.Juego
             {
                 if (generala.Cubilete.Dados.Count != 0)
                 {
-                    generala.Jugar();
+                    Tiro tiroJugado = generala.Jugar();
+                    DetectarJuegoServido(tiroJugado);
                     TurnoJugado();
                     ComprobarTirosDisponibles();
                 }
@@ -158,7 +176,9 @@ namespace UI.Juego
 
         private void CerrarCategoria_btn_Click(object sender, EventArgs e)
         {
-
+            CerrarCategoria_frm frm = new CerrarCategoria_frm(generala);
+            frm.ShowDialog();
+            ActualizarPuntajes();
         }
 
         private void TerminarTurno_btn_Click(object sender, EventArgs e)
