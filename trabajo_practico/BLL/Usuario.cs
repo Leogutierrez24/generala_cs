@@ -14,5 +14,15 @@ namespace BLL
             UsuarioMP mapper = new UsuarioMP();
             mapper.Insertar(usuario);
         }
+
+        public void Eliminar(int id)
+        {
+
+        }
+
+        public void Modificar(BE.Usuario usuario)
+        {
+
+        }
     }
 }

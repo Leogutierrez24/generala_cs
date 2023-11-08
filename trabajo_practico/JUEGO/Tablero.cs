@@ -19,21 +19,17 @@ namespace JUEGO
         {
             get { return _dadosApartados; }
         }
-
-        private Cubilete _cubilete;
-        public Cubilete Cubilete
-        {
-            get { return _cubilete; }
-        }
         
-        public Tablero(Cubilete cubilete) 
-        { 
-            _cubilete = cubilete;
-        }
+        public Tablero() { }
 
         public void PonerDadosEnTablero(List<Dado> dados)
         {
             dados.ForEach(dado => _dadosEnTablero.Add(dado));
+        }
+
+        public void QuitarDadosTablero()
+        {
+            _dadosEnTablero.Clear();
         }
 
         public void QuitarDadoTablero(List<Dado> dados)

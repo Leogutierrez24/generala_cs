@@ -28,6 +28,13 @@ namespace JUEGO
             get { return _terminado; }
         }
 
+        private Categoria _categoriaCerrada;
+        public Categoria CategoriaCerrada
+        {
+            get { return _categoriaCerrada; }
+            set { _categoriaCerrada = value; }
+        }
+
         public Turno(Jugador jugador, int tirosDisponibles = 3)
         {
             _jugadorEnJuego = jugador;
@@ -53,6 +60,11 @@ namespace JUEGO
             }
 
             return nuevoTiro;
+        }
+
+        public void CerrarCategoria()
+        {
+
         }
 
         private void VerificarTirosDisponibles()

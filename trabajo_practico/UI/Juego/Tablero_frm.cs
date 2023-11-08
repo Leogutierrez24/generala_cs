@@ -27,11 +27,9 @@ namespace UI.Juego
         {
             generala.NuevoJugador("Jugador 01");
             generala.NuevoJugador("Jugador 02");
-
-
             generala.IniciarJuego();
             CrearTablero();
-            this.ComenzarJuego();
+            ComenzarJuego();
         }
 
         // Información del Juego
@@ -57,7 +55,7 @@ namespace UI.Juego
             {
                 for (int j = 0; j < generala.Categorias.Count; j++)
                 {
-                    Tablero_dataGridView.Rows[j].Cells[i + 1].Value = generala.Jugadores[i].TablaPuntos.Categorias[j].Puntos;
+                    Tablero_dataGridView.Rows[j].Cells[i + 1].Value = generala.Jugadores[i].Categorias[j].Puntos;
                 }
             }
         }
@@ -129,18 +127,40 @@ namespace UI.Juego
         // Métodos de Comprobación
         private void ComprobarTirosDisponibles()
         {
-            if (generala.Turno.TirosDisponibles == 0)
-            {
-                TirarDados_btn.Enabled = false;
-                PonerDados_btn.Enabled = false;
-                PonerTodos_btn.Enabled = false;
-                ApartarDados_btn.Enabled = false;
-            }
+            if (generala.Turno.TirosDisponibles == 0) BloquearBotonesDados();
         }
 
         private void DetectarJuegoServido(Tiro tiro)
         {
             if (tiro.CategoriaServida != CategoriaServida.Ninguna) MessageBox.Show("¡Categoria servida obtenida!\n" + tiro.CategoriaServida);       
+        }
+
+        private void BloquearBotones()
+        {
+            CerrarCategoria_btn.Enabled = false;
+            TirarDados_btn.Enabled = false;
+        }
+
+        private void DesbloquearBotones()
+        {
+            CerrarCategoria_btn.Enabled = true;
+            TirarDados_btn.Enabled = true;
+        }
+
+        private void BloquearBotonesDados()
+        {
+            TirarDados_btn.Enabled = false;
+            PonerDados_btn.Enabled = false;
+            PonerTodos_btn.Enabled = false;
+            ApartarDados_btn.Enabled = false;
+        }
+
+        private void DesbloquearBotonesDados()
+        {
+            TirarDados_btn.Enabled = true;
+            PonerDados_btn.Enabled = true;
+            PonerTodos_btn.Enabled = true;
+            ApartarDados_btn.Enabled = true;
         }
 
         // Acciones del Juego
@@ -176,14 +196,31 @@ namespace UI.Juego
 
         private void CerrarCategoria_btn_Click(object sender, EventArgs e)
         {
-            CerrarCategoria_frm frm = new CerrarCategoria_frm(generala);
-            frm.ShowDialog();
-            ActualizarPuntajes();
+            if (generala.Turno.TirosDisponibles < 3)
+            {
+                CerrarCategoria_frm frm = new CerrarCategoria_frm(generala);
+                frm.ShowDialog();
+                ActualizarPuntajes();
+                if (generala.Turno.CategoriaCerrada != null) BloquearBotones();
+            }
+            else MessageBox.Show("Tirá al menos una vez los dados para poder cerrar una categoria.");
         }
 
         private void TerminarTurno_btn_Click(object sender, EventArgs e)
         {
-
+            if (generala.Turno.CategoriaCerrada != null)
+            {
+                generala.TerminarTurno();
+                DesbloquearBotones();
+                ActualizarJugador();
+                ActualizarDados();
+                ActualizarDadosApartados();
+                ActualizarCubilete();
+                DesbloquearBotonesDados();
+            } else
+            {
+                MessageBox.Show("Es necesario Cerrar una categoria para poder terminar el turno.");
+            }
         }
 
         private void PonerDados_btn_Click(object sender, EventArgs e)

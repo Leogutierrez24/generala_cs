@@ -21,16 +21,28 @@ namespace JUEGO
             set { _cubilete = value; }
         }
 
-        private TablaPuntos _tablaPuntos;
-        public TablaPuntos TablaPuntos
+        private readonly List<Categoria> _categorias;
+        public List<Categoria> Categorias
         {
-            get { return _tablaPuntos; }
-            set { _tablaPuntos = value; }
+            get { return _categorias; }
         }
 
         public Jugador(string nombre)
         {
             _nombre = nombre;
+            _categorias = new List<Categoria> 
+            {
+                new Categoria(CategoriaJuego.Uno, TipoCategoria.Menor),
+                new Categoria(CategoriaJuego.Dos, TipoCategoria.Menor),
+                new Categoria(CategoriaJuego.Tres, TipoCategoria.Menor),
+                new Categoria(CategoriaJuego.Cuatro, TipoCategoria.Menor),
+                new Categoria(CategoriaJuego.Cinco, TipoCategoria.Menor),
+                new Categoria(CategoriaJuego.Seis, TipoCategoria.Menor),
+                new Categoria(CategoriaJuego.Escalera, TipoCategoria.Mayor),
+                new Categoria(CategoriaJuego.Full, TipoCategoria.Mayor),
+                new Categoria(CategoriaJuego.Poker, TipoCategoria.Mayor),
+                new Categoria(CategoriaJuego.Generala, TipoCategoria.Mayor),
+            };
         }
 
         public List<Dado> TirarDados()
@@ -41,6 +53,13 @@ namespace JUEGO
         public void ElegirDados(List<Dado> dadosElegidos)
         {
             _cubilete.PonerDados(dadosElegidos);
+        }
+
+        public int CalcularPuntajeTotal()
+        {
+            int puntaje = 0;
+            _categorias.ForEach(categoria => puntaje += categoria.Puntos);
+            return puntaje;
         }
     }
 }

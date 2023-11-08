@@ -80,15 +80,11 @@ namespace JUEGO
                 new Categoria(CategoriaJuego.Generala, TipoCategoria.Mayor),
             };
 
-            _tablero = new Tablero(_cubilete);
+            _tablero = new Tablero();
         }
 
         public void IniciarJuego()
         {
-            _jugadores.ForEach(jugador =>
-            {
-                jugador.TablaPuntos = new TablaPuntos();
-            });
             NuevoTurno(_jugadores[0]);
         }
 
@@ -102,6 +98,14 @@ namespace JUEGO
             _turno.JugadorEnJuego = null;
         }
 
+        public void NuevoJuego()
+        {
+            _ganador = null;
+            if (_generalaServida) _generalaServida = false;
+            _jugadores.ForEach(jugador => ReiniciarCategorias(jugador));
+            NuevoTurno(_jugadores[0]);
+        }
+
         private void DeterminarGanador()
         {
             Jugador jugadorMayorPuntaje = null;
@@ -109,7 +113,7 @@ namespace JUEGO
 
             _jugadores.ForEach(jugador =>
             {
-                int puntajeTotal = jugador.TablaPuntos.ObtenerPuntajeTotal();
+                int puntajeTotal = jugador.CalcularPuntajeTotal();
                 if (puntajeTotal > mayorPuntajeObtenido) jugadorMayorPuntaje = jugador;
             });
 
@@ -127,10 +131,29 @@ namespace JUEGO
             _jugadores.Remove(jugador);
         }
 
+        private bool ContinuarJuego()
+        {
+            bool resultado = true;
+
+            _jugadores.ForEach(jugador =>
+            {
+                if (!jugador.Categorias.Exists(categoria => categoria.Cerrada == false)) resultado = false;
+                else resultado = true;
+            });
+
+            return resultado;
+        }
+
+        private void ReiniciarCategorias(Jugador jugador)
+        {
+            jugador.Categorias.ForEach(categoria => categoria.Restablecer());
+        }
+
         // Métodos del TABLERO
         private void RestablecerTablero()
         {
             _tablero.RestablecerDadosApartados();
+            _tablero.QuitarDadosTablero();
         }
 
         // Métodos del JUGADOR
@@ -171,36 +194,41 @@ namespace JUEGO
 
         public void PuntuarCerrarCategoria(Categoria categoria)
         {
-            int puntaje = 0;
-            if (categoria.Tipo == TipoCategoria.Menor)
+            if (_turno.TirosDisponibles < 3)
             {
-                if (categoria.Nombre == CategoriaJuego.Uno) _dados.ForEach(dado => { if (dado.Valor == 1) puntaje++; });
-                else if (categoria.Nombre == CategoriaJuego.Dos) _dados.ForEach(dado => { if (dado.Valor == 2) puntaje += 2; });
-                else if (categoria.Nombre == CategoriaJuego.Tres) _dados.ForEach(dado => { if (dado.Valor == 3) puntaje += 3; });
-                else if (categoria.Nombre == CategoriaJuego.Cuatro) _dados.ForEach(dado => { if (dado.Valor == 4) puntaje += 4; });
-                else if (categoria.Nombre == CategoriaJuego.Cinco) _dados.ForEach(dado => { if (dado.Valor == 5) puntaje += 5; });
-                else if (categoria.Nombre == CategoriaJuego.Seis) _dados.ForEach(dado => { if (dado.Valor == 6) puntaje += 6; });
-            } else
-            {
-                if (categoria.Nombre == CategoriaJuego.Escalera)
+                int puntaje = 0;
+                if (categoria.Tipo == TipoCategoria.Menor)
                 {
-                    if (_turno.TirosDisponibles >= 2) puntaje = DeterminarEscalera(_dados) ? 25 : 0;
-                    else puntaje = DeterminarEscalera(_dados) ? 20 : 0;
+                    if (categoria.Nombre == CategoriaJuego.Uno) _dados.ForEach(dado => { if (dado.Valor == 1) puntaje++; });
+                    else if (categoria.Nombre == CategoriaJuego.Dos) _dados.ForEach(dado => { if (dado.Valor == 2) puntaje += 2; });
+                    else if (categoria.Nombre == CategoriaJuego.Tres) _dados.ForEach(dado => { if (dado.Valor == 3) puntaje += 3; });
+                    else if (categoria.Nombre == CategoriaJuego.Cuatro) _dados.ForEach(dado => { if (dado.Valor == 4) puntaje += 4; });
+                    else if (categoria.Nombre == CategoriaJuego.Cinco) _dados.ForEach(dado => { if (dado.Valor == 5) puntaje += 5; });
+                    else if (categoria.Nombre == CategoriaJuego.Seis) _dados.ForEach(dado => { if (dado.Valor == 6) puntaje += 6; });
                 }
-                else if (categoria.Nombre == CategoriaJuego.Full)
+                else
                 {
-                    if (_turno.TirosDisponibles >= 2) puntaje = DeterminarFull(_dados) ? 35 : 0;
-                    else puntaje = DeterminarFull(_dados) ? 30 : 0;
+                    if (categoria.Nombre == CategoriaJuego.Escalera)
+                    {
+                        if (_turno.TirosDisponibles >= 2) puntaje = DeterminarEscalera(_dados) ? 25 : 0;
+                        else puntaje = DeterminarEscalera(_dados) ? 20 : 0;
+                    }
+                    else if (categoria.Nombre == CategoriaJuego.Full)
+                    {
+                        if (_turno.TirosDisponibles >= 2) puntaje = DeterminarFull(_dados) ? 35 : 0;
+                        else puntaje = DeterminarFull(_dados) ? 30 : 0;
+                    }
+                    else if (categoria.Nombre == CategoriaJuego.Poker)
+                    {
+                        if (_turno.TirosDisponibles >= 2) puntaje = DeterminarPoker(_dados) ? 45 : 0;
+                        else puntaje = DeterminarPoker(_dados) ? 40 : 0;
+                    }
+                    else if (categoria.Nombre == CategoriaJuego.Generala) puntaje = DeterminarGenerala(_dados) ? 60 : 0;
                 }
-                else if (categoria.Nombre == CategoriaJuego.Poker)
-                {
-                    if (_turno.TirosDisponibles >= 2) puntaje = DeterminarPoker(_dados) ? 45 : 0;
-                    else puntaje = DeterminarPoker(_dados) ? 40 : 0;
-                }
-                else if (categoria.Nombre == CategoriaJuego.Generala) puntaje = DeterminarGenerala(_dados) ? 60 : 0;
-            }
 
-            _turno.JugadorEnJuego.TablaPuntos.CerrarCategoria(categoria.Nombre, puntaje);
+                categoria.Cerrar(puntaje);
+                _turno.CategoriaCerrada = categoria;
+            }
         }
 
         public int PonerDadosCubilete(List<Dado> dados)
@@ -227,46 +255,45 @@ namespace JUEGO
             _turno = new Turno(jugador);
         }
 
+        private bool ComprobarCambioTurno()
+        {
+            bool resultado = true;
+
+            if (_turno.CategoriaCerrada == null) resultado = false;
+
+            return resultado;
+        }
+
         public void CambiarTurno()
         {
-            Jugador jugadorEnJuego = _turno.JugadorEnJuego;
-            jugadorEnJuego.Cubilete = null;
-            Jugador nuevoJugador;
-            int indexJugador = _jugadores.IndexOf(jugadorEnJuego);
-
-            if (indexJugador == _jugadores.Count - 1)
+            if (ComprobarCambioTurno()) 
             {
-                nuevoJugador = _jugadores[0];
-            }
-            else
-            {
-                nuevoJugador = _jugadores[indexJugador + 1];
-            }
+                Jugador jugadorEnJuego = _turno.JugadorEnJuego;
+                jugadorEnJuego.Cubilete = null;
+                Jugador nuevoJugador;
+                int indexJugador = _jugadores.IndexOf(jugadorEnJuego);
 
-            _turno.Terminar();
-            NuevoTurno(nuevoJugador);
-            RestablecerTablero();
+                if (indexJugador == _jugadores.Count - 1)
+                {
+                    nuevoJugador = _jugadores[0];
+                }
+                else
+                {
+                    nuevoJugador = _jugadores[indexJugador + 1];
+                }
+
+                _turno.Terminar();
+                NuevoTurno(nuevoJugador);
+                RestablecerTablero();
+            }
         }
 
         public void TerminarTurno()
         {
-            bool terminarPartida = false;
+            bool seguirJugando = ContinuarJuego();
 
-            _jugadores.ForEach(jugador =>
-            {
-                if (!jugador.TablaPuntos.Categorias.Exists(categoria => categoria.Cerrada == false))
-                {
-                    terminarPartida = true;
-                }
-            });
-
-            if (terminarPartida)
-            {
-                FinalizarJuego();
-            } else
-            {
-                CambiarTurno();
-            }
+            if (!seguirJugando) FinalizarJuego();
+            else CambiarTurno();
         }
 
         // Métodos del CUBILETE
@@ -328,20 +355,24 @@ namespace JUEGO
         }
 
         private bool DeterminarFull(List<Dado> dados)
-        { 
+        {
             bool resultado = false;
             Dado dado01 = dados[0];
             Dado dado02 = dados.Find(dado => dado.Valor != dado01.Valor);
-            int cantDados01 = 0;
-            int cantDados02 = 0;
 
-            for(int i = 0; i < dados.Count; i++)
+            if (dado02 != null)
             {
-                if (dados[i].Valor == dado01.Valor) cantDados01++;
-                else if (dados[i].Valor == dado01.Valor) cantDados02++;
-            }
+                int cantDados01 = 0;
+                int cantDados02 = 0;
 
-            if ((cantDados01 == 3 && cantDados02 == 2) || (cantDados01 == 2 && cantDados02 == 3)) resultado = true;
+                dados.ForEach(dado =>
+                {
+                    if (dado.Valor == dado01.Valor) cantDados01++;
+                    else if (dado.Valor == dado02.Valor) cantDados02++;
+                });
+
+                if ((cantDados01 == 3 && cantDados02 == 2) || (cantDados01 == 2 && cantDados02 == 3)) resultado = true;
+            }
 
             return resultado;
         }

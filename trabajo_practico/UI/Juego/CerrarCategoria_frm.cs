@@ -24,7 +24,7 @@ namespace UI.Juego
 
         private void CargarCategorias()
         {
-            generala.Turno.JugadorEnJuego.TablaPuntos.Categorias.ForEach(categoria =>
+            generala.Turno.JugadorEnJuego.Categorias.ForEach(categoria =>
             {
                 if (categoria.Cerrada != true) Categorias_listBox.Items.Add(categoria);
             });

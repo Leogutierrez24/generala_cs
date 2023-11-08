@@ -44,6 +44,12 @@ namespace JUEGO
             _cerrada = true;
         }
 
+        public void Restablecer()
+        {
+            _puntos = 0;
+            _cerrada = false;
+        }
+
         public override string ToString()
         {
             return $"{_nombre}";
