@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Login;
 
 namespace UI
 {
@@ -22,6 +23,23 @@ namespace UI
             Juego.Tablero_frm form = new Juego.Tablero_frm();
             form.Show();
             this.Hide();    
+        }
+
+        private void Registrarse_btn_Click(object sender, EventArgs e)
+        {
+            Registrar_frm form = new Registrar_frm();
+            form.ShowDialog();
+        }
+
+        private void Ingresar_btn_Click(object sender, EventArgs e)
+        {
+            Ingresar_frm form = new Ingresar_frm();
+            form.ShowDialog();
+        }
+
+        private void Cerrar_btn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

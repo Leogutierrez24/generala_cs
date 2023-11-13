@@ -307,6 +307,7 @@ namespace JUEGO
         {
             // Analiza si hubo un "Tiro Servido"
             CategoriaServida resultado = CategoriaServida.Ninguna;
+
             // escalera
             if (DeterminarEscalera(tiroPorAnalizar.DadosJugados))
             {

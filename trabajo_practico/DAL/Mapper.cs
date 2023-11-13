@@ -8,13 +8,17 @@ namespace DAL
 {
     public abstract class Mapper<T>
     {
+        internal Acceso acceso = new Acceso();
+
         public abstract void Insertar(T obj);
 
         public abstract void Actualizar(T obj);
 
-        public abstract void Borrar(T obj);
+        public abstract void Borrar(int id);
 
         public abstract T Listar();
+
+        public abstract T Obtener(T obj);
 
     }
 }

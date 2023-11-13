@@ -24,5 +24,11 @@ namespace BLL
         {
 
         }
+
+        public BE.Usuario IniciarSesion(string nombre, string password)
+        {
+            return new BE.Usuario();
+        }
+
     }
 }

@@ -44,3 +44,4 @@ D:\generala_cs-main\trabajo_practico\UI\obj\Debug\UI.Juego.CerrarCategoria_frm.r
 D:\generala_cs-main\trabajo_practico\UI\obj\Debug\UI.Promps.Prompt_frm.resources
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Juego.CerrarCategoria_frm.resources
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Promps.Prompt_frm.resources
+I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Login.Registrar_frm.resources

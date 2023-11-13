@@ -14,11 +14,9 @@ namespace DAL
 
         private readonly string _dataSource = "LEO";
 
-        private readonly string _InitialCatalog = "GENERALA";
-
         public void Conectar()
         {
-            string connectionString = $"Data Source={_dataSource};Initial Catalog={_InitialCatalog};Integrated Security=SSPI";
+            string connectionString = $"Data Source={_dataSource};Initial Catalog=TRABAJO_PRACTICO;Integrated Security=SSPI";
             _conexion = new SqlConnection(connectionString);
             _conexion.Open();
         }

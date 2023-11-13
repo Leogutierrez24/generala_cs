@@ -70,11 +70,17 @@
     <Compile Include="Juego\Tablero_frm.Designer.cs">
       <DependentUpon>Tablero_frm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\Inicio_frm.cs">
+    <Compile Include="Login\Ingresar_frm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login\Inicio_frm.Designer.cs">
-      <DependentUpon>Inicio_frm.cs</DependentUpon>
+    <Compile Include="Login\Ingresar_frm.Designer.cs">
+      <DependentUpon>Ingresar_frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\Registrar_frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\Registrar_frm.Designer.cs">
+      <DependentUpon>Registrar_frm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Prompts\Prompt_frm.cs">
@@ -96,8 +102,11 @@
     <EmbeddedResource Include="Juego\Tablero_frm.resx">
       <DependentUpon>Tablero_frm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login\Inicio_frm.resx">
-      <DependentUpon>Inicio_frm.cs</DependentUpon>
+    <EmbeddedResource Include="Login\Ingresar_frm.resx">
+      <DependentUpon>Ingresar_frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\Registrar_frm.resx">
+      <DependentUpon>Registrar_frm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Prompts\Prompt_frm.resx">
       <DependentUpon>Prompt_frm.cs</DependentUpon>

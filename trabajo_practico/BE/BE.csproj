@@ -41,6 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categoria.cs" />
+    <Compile Include="CategoriaJuego.cs" />
+    <Compile Include="Cubilete.cs" />
+    <Compile Include="Dado.cs" />
+    <Compile Include="Generala.cs" />
+    <Compile Include="Jugador.cs" />
+    <Compile Include="Tablero.cs" />
+    <Compile Include="TipoCategoria.cs" />
+    <Compile Include="Tiro.cs" />
+    <Compile Include="Turno.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

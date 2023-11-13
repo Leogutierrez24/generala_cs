@@ -31,7 +31,7 @@
             this.Registrarse_btn = new System.Windows.Forms.Button();
             this.Jugar_btn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.Login_btn = new System.Windows.Forms.Button();
+            this.Ingresar_btn = new System.Windows.Forms.Button();
             this.Cerrar_btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -44,6 +44,7 @@
             this.Registrarse_btn.TabIndex = 0;
             this.Registrarse_btn.Text = "Registrarse";
             this.Registrarse_btn.UseVisualStyleBackColor = true;
+            this.Registrarse_btn.Click += new System.EventHandler(this.Registrarse_btn_Click);
             // 
             // Jugar_btn
             // 
@@ -66,15 +67,16 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Trabajo Práctico: Generala";
             // 
-            // Login_btn
+            // Ingresar_btn
             // 
-            this.Login_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Login_btn.Location = new System.Drawing.Point(91, 107);
-            this.Login_btn.Name = "Login_btn";
-            this.Login_btn.Size = new System.Drawing.Size(93, 43);
-            this.Login_btn.TabIndex = 3;
-            this.Login_btn.Text = "Ingresar";
-            this.Login_btn.UseVisualStyleBackColor = true;
+            this.Ingresar_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ingresar_btn.Location = new System.Drawing.Point(91, 107);
+            this.Ingresar_btn.Name = "Ingresar_btn";
+            this.Ingresar_btn.Size = new System.Drawing.Size(93, 43);
+            this.Ingresar_btn.TabIndex = 3;
+            this.Ingresar_btn.Text = "Ingresar";
+            this.Ingresar_btn.UseVisualStyleBackColor = true;
+            this.Ingresar_btn.Click += new System.EventHandler(this.Ingresar_btn_Click);
             // 
             // Cerrar_btn
             // 
@@ -85,14 +87,15 @@
             this.Cerrar_btn.TabIndex = 4;
             this.Cerrar_btn.Text = "Salir";
             this.Cerrar_btn.UseVisualStyleBackColor = true;
+            this.Cerrar_btn.Click += new System.EventHandler(this.Cerrar_btn_Click);
             // 
             // Inicio_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 190);
+            this.ClientSize = new System.Drawing.Size(379, 178);
             this.Controls.Add(this.Cerrar_btn);
-            this.Controls.Add(this.Login_btn);
+            this.Controls.Add(this.Ingresar_btn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Jugar_btn);
             this.Controls.Add(this.Registrarse_btn);
@@ -109,7 +112,7 @@
         private System.Windows.Forms.Button Registrarse_btn;
         private System.Windows.Forms.Button Jugar_btn;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button Login_btn;
+        private System.Windows.Forms.Button Ingresar_btn;
         private System.Windows.Forms.Button Cerrar_btn;
     }
 }
