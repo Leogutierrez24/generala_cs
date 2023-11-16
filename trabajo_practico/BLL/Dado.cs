@@ -10,6 +10,14 @@ namespace BLL
 {
     public class Dado
     {
+        public static BE.Dado CrearDado(int id)
+        {
+            BE.Dado dado = new BE.Dado();
+            dado.Id = id;
+
+            return dado;
+        }
+
         public static void Tirar(BE.Dado dado)
         {
             Random valorAleatorio = Helper.random;

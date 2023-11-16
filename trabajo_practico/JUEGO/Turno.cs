@@ -62,11 +62,6 @@ namespace JUEGO
             return nuevoTiro;
         }
 
-        public void CerrarCategoria()
-        {
-
-        }
-
         private void VerificarTirosDisponibles()
         {
             if (_tirosDisponibles == 0) Terminar();

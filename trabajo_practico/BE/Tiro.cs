@@ -8,23 +8,25 @@ namespace BE
 {
     public class Tiro
     {
-        private readonly List<Dado> _dadosJugados;
-
+        private List<Dado> _dadosJugados;
         public List<Dado> DadosJugados
         {
             get { return _dadosJugados; }
+            set { _dadosJugados = value; }
         }
 
-        private readonly Jugador _jugador;
+        private Jugador _jugador;
         public Jugador Jugador
         {
             get { return _jugador; }
+            set { _jugador = value; }
         }
 
-        private readonly int _numeroDeTiro;
+        private int _numeroDeTiro;
         public int NumeroDeTiro
         {
             get { return _numeroDeTiro; }
+            set { _numeroDeTiro = value; }
         }
 
         private CategoriaServida _categoriaServida = CategoriaServida.Ninguna;
@@ -32,13 +34,6 @@ namespace BE
         {
             get { return _categoriaServida; }
             set { _categoriaServida = value; }
-        }
-
-        public Tiro(Jugador jugador, List<Dado> dadosJugados, int numeroTiro)
-        {
-            _jugador = jugador;
-            _dadosJugados = dadosJugados;
-            _numeroDeTiro = numeroTiro;
         }
     }
 }

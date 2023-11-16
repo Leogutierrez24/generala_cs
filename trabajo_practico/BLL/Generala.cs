@@ -8,59 +8,80 @@ namespace BLL
 {
     public class Generala
     {
-        public void IniciarJuego()
+        public BE.Generala InicializarGenerala()
         {
-            NuevoTurno(_jugadores[0]);
+            BE.Generala generala = new BE.Generala();
+
+            generala.Dados = new List<BE.Dado>
+            {
+                Dado.CrearDado(1),
+                Dado.CrearDado(2),
+                Dado.CrearDado(3),
+                Dado.CrearDado(4),
+                Dado.CrearDado(5),
+            };
+
+            generala.Categorias = new List<BE.Categoria>
+            {
+                Categoria.CrearCategoria(BE.CategoriaJuego.Uno, BE.TipoCategoria.Menor),
+                Categoria.CrearCategoria(BE.CategoriaJuego.Dos, BE.TipoCategoria.Menor),
+                Categoria.CrearCategoria(BE.CategoriaJuego.Tres, BE.TipoCategoria.Menor),
+                Categoria.CrearCategoria(BE.CategoriaJuego.Cuatro, BE.TipoCategoria.Menor),
+                Categoria.CrearCategoria(BE.CategoriaJuego.Cinco, BE.TipoCategoria.Menor),
+                Categoria.CrearCategoria(BE.CategoriaJuego.Seis, BE.TipoCategoria.Menor),
+                Categoria.CrearCategoria(BE.CategoriaJuego.Escalera, BE.TipoCategoria.Mayor),
+                Categoria.CrearCategoria(BE.CategoriaJuego.Full, BE.TipoCategoria.Mayor),
+                Categoria.CrearCategoria(BE.CategoriaJuego.Poker, BE.TipoCategoria.Mayor),
+                Categoria.CrearCategoria(BE.CategoriaJuego.Generala, BE.TipoCategoria.Mayor),
+            };
+
+            generala.Tablero = new BE.Tablero();
+
+            return generala;
         }
 
-        public void FinalizarJuego()
+        public void IniciarJuego(BE.Generala generala, BE.Jugador jugador)
         {
-            if (!_generalaServida)
+            generala.Turno = NuevoTurno(jugador);
+        }
+
+        public void FinalizarJuego(BE.Generala generala)
+        {
+            if (!generala.GeneralaServida)
             {
                 DeterminarGanador();
             }
 
-            _turno.JugadorEnJuego = null;
+            generala.Turno.JugadorEnJuego = null;
         }
 
-        public void NuevoJuego()
+        public void NuevoJuego(BE.Generala generala)
         {
-            _ganador = null;
-            if (_generalaServida) _generalaServida = false;
-            _jugadores.ForEach(jugador => ReiniciarCategorias(jugador));
-            NuevoTurno(_jugadores[0]);
+            generala.Ganador = null;
+            if (generala.GeneralaServida) generala.GeneralaServida = false;
+            generala.Jugadores.ForEach(jugador => ReiniciarCategorias(jugador));
+            NuevoTurno(generala.Jugadores[0]);
         }
 
-        private void DeterminarGanador()
+        private void DeterminarGanador(BE.Generala generala)
         {
-            Jugador jugadorMayorPuntaje = null;
+            BE.Jugador jugadorMayorPuntaje = null;
             int mayorPuntajeObtenido = 0;
 
-            _jugadores.ForEach(jugador =>
+            generala.Jugadores.ForEach(jugador =>
             {
-                int puntajeTotal = jugador.CalcularPuntajeTotal();
+                int puntajeTotal = Jugador.CalcularPuntajeTotal(jugador);
                 if (puntajeTotal > mayorPuntajeObtenido) jugadorMayorPuntaje = jugador;
             });
 
-            _ganador = jugadorMayorPuntaje;
+            generala.Ganador = jugadorMayorPuntaje;
         }
 
-        public void NuevoJugador(string nombre)
-        {
-            Jugador nuevoJugador = new Jugador(nombre);
-            _jugadores.Add(nuevoJugador);
-        }
-
-        public void EliminarJugador(Jugador jugador)
-        {
-            _jugadores.Remove(jugador);
-        }
-
-        private bool ContinuarJuego()
+        private bool ContinuarJugando(BE.Generala generala)
         {
             bool resultado = true;
 
-            _jugadores.ForEach(jugador =>
+            generala.Jugadores.ForEach(jugador =>
             {
                 if (!jugador.Categorias.Exists(categoria => categoria.Cerrada == false)) resultado = false;
                 else resultado = true;
@@ -69,29 +90,29 @@ namespace BLL
             return resultado;
         }
 
-        private void ReiniciarCategorias(Jugador jugador)
+        private void ReiniciarCategorias(BE.Jugador jugador)
         {
-            jugador.Categorias.ForEach(categoria => categoria.Restablecer());
+            jugador.Categorias.ForEach(categoria => Categoria.Restablecer(categoria));
         }
 
-        private void RestablecerTablero()
+        private void RestablecerTablero(BE.Tablero tablero)
         {
-            _tablero.RestablecerDadosApartados();
-            _tablero.QuitarDadosTablero();
+            Tablero.RestablecerDadosApartados(tablero);
+            Tablero.QuitarDadosTablero(tablero);
         }
 
-        public Tiro Jugar()
+        public BE.Tiro Jugar(BE.Generala generala)
         {
-            Tiro tiroRealizado;
-            if (_tablero.DadosEnTablero.Count == 0)
+            BE.Tiro tiroRealizado;
+            if (generala.Tablero.DadosEnTablero.Count == 0)
             {
-                tiroRealizado = _turno.JugarTurno();
+                tiroRealizado = generala.Turno.JugarTurno();
                 if (tiroRealizado.NumeroDeTiro == 3)
                 {
                     CategoriaServida catServida = ComprobarCategoriaObtenida(tiroRealizado);
                     if (catServida != CategoriaServida.Ninguna) tiroRealizado.CategoriaServida = catServida;
                 }
-                _tablero.PonerDadosEnTablero(tiroRealizado.DadosJugados);
+                generala.Tablero.PonerDadosEnTablero(tiroRealizado.DadosJugados);
             }
             else
             {
@@ -171,11 +192,11 @@ namespace BLL
             return resultado;
         }
 
-        private void NuevoTurno(Jugador jugador)
+        private BE.Turno NuevoTurno(BE.Jugador jugador)
         {
             InicializarCubilete();
-            jugador.Cubilete = _cubilete;
-            _turno = new Turno(jugador);
+            BE.Turno turno = new BE.Turno(jugador);
+            return turno;
         }
 
         private bool ComprobarCambioTurno()
@@ -213,7 +234,7 @@ namespace BLL
 
         public void TerminarTurno()
         {
-            bool seguirJugando = ContinuarJuego();
+            bool seguirJugando = ContinuarJugando();
 
             if (!seguirJugando) FinalizarJuego();
             else CambiarTurno();

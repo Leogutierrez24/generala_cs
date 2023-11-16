@@ -12,6 +12,7 @@ namespace BE
         public int Id
         {
             get { return _id; }
+            set { _id = value; }
         }
 
         private int _valor;
@@ -19,17 +20,6 @@ namespace BE
         {
             get { return _valor; }
             set { _valor = value; }
-        }
-
-        public Dado(int id)
-        {
-            _id = id;
-            _valor = 0;
-        }
-
-        public override string ToString()
-        {
-            return $"Nro: {_id} | Valor: {_valor}";
         }
     }
 }
