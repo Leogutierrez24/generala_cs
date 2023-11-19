@@ -52,6 +52,7 @@
     <Compile Include="Tablero.cs" />
     <Compile Include="TipoCategoria.cs" />
     <Compile Include="Tiro.cs" />
+    <Compile Include="Turno.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

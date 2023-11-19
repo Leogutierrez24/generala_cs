@@ -26,6 +26,7 @@ namespace BE
         public bool Terminado
         {
             get { return _terminado; }
+            set { _terminado = value; }
         }
 
         private Categoria _categoriaCerrada;
@@ -34,12 +35,5 @@ namespace BE
             get { return _categoriaCerrada; }
             set { _categoriaCerrada = value; }
         }
-
-        public Turno(Jugador jugador, int tirosDisponibles = 3)
-        {
-            _jugadorEnJuego = jugador;
-            _tirosDisponibles = tirosDisponibles;
-        }
-
     }
 }

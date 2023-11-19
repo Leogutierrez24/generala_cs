@@ -42,14 +42,14 @@ namespace BLL
 
         public void IniciarJuego(BE.Generala generala, BE.Jugador jugador)
         {
-            generala.Turno = NuevoTurno(jugador);
+            generala.Turno = NuevoTurno(generala, jugador);
         }
 
         public void FinalizarJuego(BE.Generala generala)
         {
             if (!generala.GeneralaServida)
             {
-                DeterminarGanador();
+                DeterminarGanador(generala);
             }
 
             generala.Turno.JugadorEnJuego = null;
@@ -60,7 +60,7 @@ namespace BLL
             generala.Ganador = null;
             if (generala.GeneralaServida) generala.GeneralaServida = false;
             generala.Jugadores.ForEach(jugador => ReiniciarCategorias(jugador));
-            NuevoTurno(generala.Jugadores[0]);
+            NuevoTurno(generala, generala.Jugadores[0]);
         }
 
         private void DeterminarGanador(BE.Generala generala)
@@ -103,176 +103,146 @@ namespace BLL
 
         public BE.Tiro Jugar(BE.Generala generala)
         {
-            BE.Tiro tiroRealizado;
+            BE.Tiro tiroRealizado = null;
             if (generala.Tablero.DadosEnTablero.Count == 0)
             {
-                tiroRealizado = generala.Turno.JugarTurno();
+                tiroRealizado = Turno.JugarTurno(generala.Cubilete, generala.Turno);
                 if (tiroRealizado.NumeroDeTiro == 3)
                 {
-                    CategoriaServida catServida = ComprobarCategoriaObtenida(tiroRealizado);
-                    if (catServida != CategoriaServida.Ninguna) tiroRealizado.CategoriaServida = catServida;
+                    BE.CategoriaServida catServida = ComprobarCategoriaObtenida(generala, tiroRealizado);
+                    if (catServida != BE.CategoriaServida.Ninguna) tiroRealizado.CategoriaServida = catServida;
                 }
-                generala.Tablero.PonerDadosEnTablero(tiroRealizado.DadosJugados);
-            }
-            else
-            {
-                tiroRealizado = null;
+                Tablero.PonerDadosEnTablero(generala.Tablero, tiroRealizado.DadosJugados);
             }
 
             return tiroRealizado;
         }
 
-        private CategoriaServida ComprobarCategoriaObtenida(Tiro tiroRealizado)
+        private BE.CategoriaServida ComprobarCategoriaObtenida(BE.Generala generala, BE.Tiro tiroRealizado)
         {
-            CategoriaServida resultado = AnalizarTiro(tiroRealizado);
+            BE.CategoriaServida resultado = AnalizarTiro(tiroRealizado);
             if (tiroRealizado.NumeroDeTiro == 3)
             {
-                if (resultado == CategoriaServida.Generala)
+                if (resultado == BE.CategoriaServida.Generala)
                 {
-                    _ganador = _turno.JugadorEnJuego;
-                    FinalizarJuego();
+                    generala.Ganador = generala.Turno.JugadorEnJuego;
+                    FinalizarJuego(generala);
                 }
             }
 
             return resultado;
         }
 
-        public void PuntuarCerrarCategoria(Categoria categoria)
+        public void PuntuarCerrarCategoria(BE.Generala generala, BE.Categoria categoria)
         {
-            if (_turno.TirosDisponibles < 3)
+            if (generala.Turno.TirosDisponibles < 3)
             {
                 int puntaje = 0;
-                if (categoria.Tipo == TipoCategoria.Menor)
+                if (categoria.Tipo == BE.TipoCategoria.Menor)
                 {
-                    if (categoria.Nombre == CategoriaJuego.Uno) _dados.ForEach(dado => { if (dado.Valor == 1) puntaje++; });
-                    else if (categoria.Nombre == CategoriaJuego.Dos) _dados.ForEach(dado => { if (dado.Valor == 2) puntaje += 2; });
-                    else if (categoria.Nombre == CategoriaJuego.Tres) _dados.ForEach(dado => { if (dado.Valor == 3) puntaje += 3; });
-                    else if (categoria.Nombre == CategoriaJuego.Cuatro) _dados.ForEach(dado => { if (dado.Valor == 4) puntaje += 4; });
-                    else if (categoria.Nombre == CategoriaJuego.Cinco) _dados.ForEach(dado => { if (dado.Valor == 5) puntaje += 5; });
-                    else if (categoria.Nombre == CategoriaJuego.Seis) _dados.ForEach(dado => { if (dado.Valor == 6) puntaje += 6; });
+                    if (categoria.Nombre == BE.CategoriaJuego.Uno) generala.Dados.ForEach(dado => { if (dado.Valor == 1) puntaje++; });
+                    else if (categoria.Nombre == BE.CategoriaJuego.Dos) generala.Dados.ForEach(dado => { if (dado.Valor == 2) puntaje += 2; });
+                    else if (categoria.Nombre == BE.CategoriaJuego.Tres) generala.Dados.ForEach(dado => { if (dado.Valor == 3) puntaje += 3; });
+                    else if (categoria.Nombre == BE.CategoriaJuego.Cuatro) generala.Dados.ForEach(dado => { if (dado.Valor == 4) puntaje += 4; });
+                    else if (categoria.Nombre == BE.CategoriaJuego.Cinco) generala.Dados.ForEach(dado => { if (dado.Valor == 5) puntaje += 5; });
+                    else if (categoria.Nombre == BE.CategoriaJuego.Seis) generala.Dados.ForEach(dado => { if (dado.Valor == 6) puntaje += 6; });
                 }
                 else
                 {
-                    if (categoria.Nombre == CategoriaJuego.Escalera)
+                    if (categoria.Nombre == BE.CategoriaJuego.Escalera)
                     {
-                        if (_turno.TirosDisponibles >= 2) puntaje = DeterminarEscalera(_dados) ? 25 : 0;
-                        else puntaje = DeterminarEscalera(_dados) ? 20 : 0;
+                        if (generala.Turno.TirosDisponibles >= 2) puntaje = DeterminarEscalera(generala.Dados) ? 25 : 0;
+                        else puntaje = DeterminarEscalera(generala.Dados) ? 20 : 0;
                     }
-                    else if (categoria.Nombre == CategoriaJuego.Full)
+                    else if (categoria.Nombre == BE.CategoriaJuego.Full)
                     {
-                        if (_turno.TirosDisponibles >= 2) puntaje = DeterminarFull(_dados) ? 35 : 0;
-                        else puntaje = DeterminarFull(_dados) ? 30 : 0;
+                        if (generala.Turno.TirosDisponibles >= 2) puntaje = DeterminarFull(generala.Dados) ? 35 : 0;
+                        else puntaje = DeterminarFull(generala.Dados) ? 30 : 0;
                     }
-                    else if (categoria.Nombre == CategoriaJuego.Poker)
+                    else if (categoria.Nombre == BE.CategoriaJuego.Poker)
                     {
-                        if (_turno.TirosDisponibles >= 2) puntaje = DeterminarPoker(_dados) ? 45 : 0;
-                        else puntaje = DeterminarPoker(_dados) ? 40 : 0;
+                        if (generala.Turno.TirosDisponibles >= 2) puntaje = DeterminarPoker(generala.Dados) ? 45 : 0;
+                        else puntaje = DeterminarPoker(generala.Dados) ? 40 : 0;
                     }
-                    else if (categoria.Nombre == CategoriaJuego.Generala) puntaje = DeterminarGenerala(_dados) ? 60 : 0;
+                    else if (categoria.Nombre == BE.CategoriaJuego.Generala) puntaje = DeterminarGenerala(generala.Dados) ? 60 : 0;
                 }
 
-                categoria.Cerrar(puntaje);
-                _turno.CategoriaCerrada = categoria;
+                Categoria.Cerrar(categoria, puntaje);
+                generala.Turno.CategoriaCerrada = categoria;
             }
         }
 
-        public int PonerDadosCubilete(List<Dado> dados)
+        private BE.Turno NuevoTurno(BE.Generala generala, BE.Jugador jugador)
         {
-            int resultado;
-            if (_cubilete.Dados.Count + dados.Count <= 5)
-            {
-                _turno.JugadorEnJuego.ElegirDados(dados);
-                _tablero.QuitarDadoTablero(dados);
-                resultado = 0;
-            }
-            else
-            {
-                resultado = -1;
-            }
-            return resultado;
-        }
-
-        private BE.Turno NuevoTurno(BE.Jugador jugador)
-        {
-            InicializarCubilete();
-            BE.Turno turno = new BE.Turno(jugador);
+            InicializarCubilete(generala);
+            BE.Turno turno = Turno.CrearTurno(jugador);
             return turno;
         }
 
-        private bool ComprobarCambioTurno()
+        private bool ComprobarCambioTurno(BE.Generala generala)
         {
             bool resultado = true;
 
-            if (_turno.CategoriaCerrada == null) resultado = false;
+            if (generala.Turno.CategoriaCerrada == null) resultado = false;
 
             return resultado;
         }
 
-        public void CambiarTurno()
+        public void CambiarTurno(BE.Generala generala)
         {
-            if (ComprobarCambioTurno())
+            if (ComprobarCambioTurno(generala))
             {
-                Jugador jugadorEnJuego = _turno.JugadorEnJuego;
-                jugadorEnJuego.Cubilete = null;
-                Jugador nuevoJugador;
-                int indexJugador = _jugadores.IndexOf(jugadorEnJuego);
-
-                if (indexJugador == _jugadores.Count - 1)
-                {
-                    nuevoJugador = _jugadores[0];
-                }
-                else
-                {
-                    nuevoJugador = _jugadores[indexJugador + 1];
-                }
-
-                _turno.Terminar();
-                NuevoTurno(nuevoJugador);
-                RestablecerTablero();
+                BE.Jugador jugadorEnJuego = generala.Turno.JugadorEnJuego;
+                BE.Jugador nuevoJugador;
+                nuevoJugador = generala.Jugadores.Find(jugador => jugador.Nombre != jugadorEnJuego.Nombre);
+                Turno.Terminar(generala.Turno);
+                NuevoTurno(generala, nuevoJugador);
+                RestablecerTablero(generala.Tablero);
             }
         }
 
-        public void TerminarTurno()
+        public void TerminarTurno(BE.Generala generala)
         {
-            bool seguirJugando = ContinuarJugando();
+            bool seguirJugando = ContinuarJugando(generala);
 
-            if (!seguirJugando) FinalizarJuego();
-            else CambiarTurno();
+            if (!seguirJugando) FinalizarJuego(generala);
+            else CambiarTurno(generala);
         }
 
-        private void InicializarCubilete()
+        private void InicializarCubilete(BE.Generala generala)
         {
-            _cubilete.PonerDados(_dados);
+            Cubilete.PonerDados(generala.Cubilete, generala.Dados);
+            generala.Dados.ForEach(dado => Dado.Restablecer(dado));
         }
 
-        private CategoriaServida AnalizarTiro(Tiro tiroPorAnalizar)
+        private BE.CategoriaServida AnalizarTiro(BE.Tiro tiroPorAnalizar)
         {
-            CategoriaServida resultado = CategoriaServida.Ninguna;
+            BE.CategoriaServida resultado = BE.CategoriaServida.Ninguna;
 
             if (DeterminarEscalera(tiroPorAnalizar.DadosJugados))
             {
-                resultado = CategoriaServida.Escalera;
+                resultado = BE.CategoriaServida.Escalera;
             }
 
             if (DeterminarFull(tiroPorAnalizar.DadosJugados))
             {
-                resultado = CategoriaServida.Full;
+                resultado = BE.CategoriaServida.Full;
             }
 
             if (DeterminarPoker(tiroPorAnalizar.DadosJugados))
             {
-                resultado = CategoriaServida.Poker;
+                resultado = BE.CategoriaServida.Poker;
             }
 
             if (DeterminarGenerala(tiroPorAnalizar.DadosJugados))
             {
-                resultado = CategoriaServida.Generala;
+                resultado = BE.CategoriaServida.Generala;
             }
 
             return resultado;
         }
 
-        private bool DeterminarEscalera(List<Dado> dados)
+        private bool DeterminarEscalera(List<BE.Dado> dados)
         {
             bool resultado = true;
             if (!dados.Exists(dado => dado.Valor == 2) || !dados.Exists(dado => dado.Valor == 3) ||
@@ -291,11 +261,11 @@ namespace BLL
             return resultado;
         }
 
-        private bool DeterminarFull(List<Dado> dados)
+        private bool DeterminarFull(List<BE.Dado> dados)
         {
             bool resultado = false;
-            Dado dado01 = dados[0];
-            Dado dado02 = dados.Find(dado => dado.Valor != dado01.Valor);
+            BE.Dado dado01 = dados[0];
+            BE.Dado dado02 = dados.Find(dado => dado.Valor != dado01.Valor);
 
             if (dado02 != null)
             {
@@ -314,22 +284,22 @@ namespace BLL
             return resultado;
         }
 
-        private bool DeterminarPoker(List<Dado> dados)
+        private bool DeterminarPoker(List<BE.Dado> dados)
         {
             bool resultado = false;
-            Dado dado = dados[0];
+            BE.Dado dado = dados[0];
 
-            List<Dado> dadosIguales = dados.FindAll(i => i.Valor == dado.Valor);
+            List<BE.Dado> dadosIguales = dados.FindAll(i => i.Valor == dado.Valor);
 
             if (dadosIguales.Count == 4) resultado = true;
 
             return resultado;
         }
 
-        private bool DeterminarGenerala(List<Dado> dados)
+        private bool DeterminarGenerala(List<BE.Dado> dados)
         {
             bool resultado = true;
-            Dado dadoLanzado = dados[0];
+            BE.Dado dadoLanzado = dados[0];
 
             if (dados.Exists(dado => dado.Valor != dadoLanzado.Valor)) resultado = false;
 
