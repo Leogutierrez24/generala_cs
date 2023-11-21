@@ -16,8 +16,12 @@ namespace BLL
 
         public static List<BE.Dado> TirarDados(BE.Cubilete cubilete)
         {
-            cubilete.Dados.ForEach(dado => Dado.Tirar(dado));
-            List<BE.Dado> dadosObtenidos = cubilete.Dados;
+            List<BE.Dado> dadosObtenidos = new List<BE.Dado>();
+            cubilete.Dados.ForEach(dado =>
+            {
+                Dado.Tirar(dado);
+                dadosObtenidos.Add(dado);
+            });
             cubilete.Dados.Clear();
             cubilete.Vacio = true;
             return dadosObtenidos;

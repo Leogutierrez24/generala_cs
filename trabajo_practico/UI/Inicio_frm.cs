@@ -13,16 +13,64 @@ namespace UI
 {
     public partial class Inicio_frm : Form
     {
+        public BE.Usuario usuario01;
+
+        public BE.Usuario usuario02;
+
+        private BE.SesionUsuario _sesion01;
+
+        private BE.SesionUsuario _sesion02;
+
+        private readonly BLL.SesionUsuario _gestorSesion;
+
+        private readonly Ingresar_frm _ingresarFrm;
+
         public Inicio_frm()
         {
             InitializeComponent();
+            _ingresarFrm = new Ingresar_frm();
+            _ingresarFrm.LogearUsuario += Ingresar_frm_LogearUsuario;
+            usuario01 = null;
+            usuario02 = null;
+            _gestorSesion = new BLL.SesionUsuario();
+        }
+
+        private void Ingresar_frm_LogearUsuario(object sender, UsuarioEventArgs e)
+        {
+            if (usuario01 == null)
+            {
+                usuario01 = e.UsuarioRetornado;
+                _sesion01 = _gestorSesion.NuevaSesionUsuario(usuario01.Id);
+            }
+            else if (usuario02 == null)
+            {
+                usuario02 = e.UsuarioRetornado;
+                _sesion02 = _gestorSesion.NuevaSesionUsuario(usuario02.Id);
+            }
+        }
+
+        private void Inicio_frm_Load(object sender, EventArgs e)
+        {
+            ComprobarUsuarios();
+        }
+
+        private void ComprobarUsuarios()
+        {
+            NombreUsuario1_lbl.Text = usuario01 == null ? "No hay usuario logeado." : usuario01.Nombre;
+            NombreUsuario2_lbl.Text = usuario02 == null ? "No hay usuario logeado." : usuario02.Nombre;
         }
 
         private void Jugar_btn_Click(object sender, EventArgs e)
         {
-            Juego.Tablero_frm form = new Juego.Tablero_frm();
-            form.Show();
-            this.Hide();    
+            if (usuario01 == null || usuario02 == null)
+            {
+                MessageBox.Show("¡Se necesitan dos usuarios para poder jugar!");
+            } else
+            {
+                Juego.Tablero_frm form = new Juego.Tablero_frm(usuario01, usuario02);
+                form.Show();
+                this.Hide();
+            }
         }
 
         private void Registrarse_btn_Click(object sender, EventArgs e)
@@ -33,13 +81,49 @@ namespace UI
 
         private void Ingresar_btn_Click(object sender, EventArgs e)
         {
-            Ingresar_frm form = new Ingresar_frm();
-            form.ShowDialog();
+            if (usuario01 == null || usuario02 == null)
+            {
+                _ingresarFrm.ShowDialog();
+                ComprobarUsuarios();
+                DetectarUsuario();
+            }
+            else
+            {
+                MessageBox.Show("¡Ya no pueden ingresar más usuarios!");
+            }
         }
 
         private void Cerrar_btn_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void DetectarUsuario()
+        {
+            if (usuario01 != null) CerrarSesion1_btn.Visible = true;
+            if (usuario02 != null) CerrarSesion2_btn.Visible = true;
+        }
+
+        private void CerrarSesion(Label label, Button btn)
+        {
+            label.Text = "No hay usuario logeado.";
+            btn.Visible = false;
+        }
+
+        private void CerrarSesion1_btn_Click(object sender, EventArgs e)
+        {
+            usuario01 = null;
+            CerrarSesion(NombreUsuario1_lbl, CerrarSesion1_btn);
+            _gestorSesion.Guardar(_sesion01);
+            _sesion01 = null;
+        }
+
+        private void CerrarSesion2_btn_Click(object sender, EventArgs e)
+        {
+            usuario02 = null;
+            CerrarSesion(NombreUsuario2_lbl, CerrarSesion2_btn);
+            _gestorSesion.Guardar(_sesion02);
+            _sesion02 = null;
         }
     }
 }

@@ -40,9 +40,9 @@ namespace BLL
             return generala;
         }
 
-        public void IniciarJuego(BE.Generala generala, BE.Jugador jugador)
+        public void IniciarJuego(BE.Generala generala)
         {
-            generala.Turno = NuevoTurno(generala, jugador);
+            NuevoTurno(generala, generala.Jugadores[0]);
         }
 
         public void FinalizarJuego(BE.Generala generala)
@@ -51,15 +51,19 @@ namespace BLL
             {
                 DeterminarGanador(generala);
             }
-
             generala.Turno.JugadorEnJuego = null;
+            generala.PartidaTerminada = true;
         }
 
         public void NuevoJuego(BE.Generala generala)
         {
             generala.Ganador = null;
+            generala.PartidaTerminada = false;
             if (generala.GeneralaServida) generala.GeneralaServida = false;
             generala.Jugadores.ForEach(jugador => ReiniciarCategorias(jugador));
+            Tablero.RestablecerDadosApartados(generala.Tablero);
+            Tablero.QuitarDadosTablero(generala.Tablero);
+            InicializarCubilete(generala);
             NuevoTurno(generala, generala.Jugadores[0]);
         }
 
@@ -107,7 +111,7 @@ namespace BLL
             if (generala.Tablero.DadosEnTablero.Count == 0)
             {
                 tiroRealizado = Turno.JugarTurno(generala.Cubilete, generala.Turno);
-                if (tiroRealizado.NumeroDeTiro == 3)
+                if (tiroRealizado?.NumeroDeTiro == 3)
                 {
                     BE.CategoriaServida catServida = ComprobarCategoriaObtenida(generala, tiroRealizado);
                     if (catServida != BE.CategoriaServida.Ninguna) tiroRealizado.CategoriaServida = catServida;
@@ -172,11 +176,11 @@ namespace BLL
             }
         }
 
-        private BE.Turno NuevoTurno(BE.Generala generala, BE.Jugador jugador)
+        private void NuevoTurno(BE.Generala generala, BE.Jugador jugador)
         {
             InicializarCubilete(generala);
             BE.Turno turno = Turno.CrearTurno(jugador);
-            return turno;
+            generala.Turno = turno;
         }
 
         private bool ComprobarCambioTurno(BE.Generala generala)
@@ -222,19 +226,13 @@ namespace BLL
             if (DeterminarEscalera(tiroPorAnalizar.DadosJugados))
             {
                 resultado = BE.CategoriaServida.Escalera;
-            }
-
-            if (DeterminarFull(tiroPorAnalizar.DadosJugados))
+            } else if (DeterminarFull(tiroPorAnalizar.DadosJugados))
             {
                 resultado = BE.CategoriaServida.Full;
-            }
-
-            if (DeterminarPoker(tiroPorAnalizar.DadosJugados))
+            } else if (DeterminarPoker(tiroPorAnalizar.DadosJugados))
             {
                 resultado = BE.CategoriaServida.Poker;
-            }
-
-            if (DeterminarGenerala(tiroPorAnalizar.DadosJugados))
+            } else if (DeterminarGenerala(tiroPorAnalizar.DadosJugados))
             {
                 resultado = BE.CategoriaServida.Generala;
             }
@@ -286,14 +284,9 @@ namespace BLL
 
         private bool DeterminarPoker(List<BE.Dado> dados)
         {
-            bool resultado = false;
-            BE.Dado dado = dados[0];
+            var dadosAgrupados = dados.GroupBy(dado => dado.Valor);
 
-            List<BE.Dado> dadosIguales = dados.FindAll(i => i.Valor == dado.Valor);
-
-            if (dadosIguales.Count == 4) resultado = true;
-
-            return resultado;
+            return dadosAgrupados.Any(grupoDados => grupoDados.Count() == 4);
         }
 
         private bool DeterminarGenerala(List<BE.Dado> dados)
@@ -304,6 +297,13 @@ namespace BLL
             if (dados.Exists(dado => dado.Valor != dadoLanzado.Valor)) resultado = false;
 
             return resultado;
+        }
+
+        public void EstablecerJugador(BE.Generala generala, BE.Usuario jugador)
+        {
+            BE.Jugador nuevoJugador = Jugador.CrearJugador(jugador.Nombre);
+
+            if (generala.Jugadores.Count <= 2) generala.Jugadores.Add(nuevoJugador);
         }
 
         /*  Ronda que determina el orden de juego que va a tener c/jugador.

@@ -33,6 +33,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Ingresar_btn = new System.Windows.Forms.Button();
             this.Cerrar_btn = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.NombreUsuario1_lbl = new System.Windows.Forms.Label();
+            this.NombreUsuario2_lbl = new System.Windows.Forms.Label();
+            this.CerrarSesion1_btn = new System.Windows.Forms.Button();
+            this.CerrarSesion2_btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Registrarse_btn
@@ -89,19 +95,88 @@
             this.Cerrar_btn.UseVisualStyleBackColor = true;
             this.Cerrar_btn.Click += new System.EventHandler(this.Cerrar_btn_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 195);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Usuario 01:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 224);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(61, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Usuario 02:";
+            // 
+            // NombreUsuario1_lbl
+            // 
+            this.NombreUsuario1_lbl.AutoSize = true;
+            this.NombreUsuario1_lbl.Location = new System.Drawing.Point(79, 195);
+            this.NombreUsuario1_lbl.Name = "NombreUsuario1_lbl";
+            this.NombreUsuario1_lbl.Size = new System.Drawing.Size(111, 13);
+            this.NombreUsuario1_lbl.TabIndex = 7;
+            this.NombreUsuario1_lbl.Text = "Nombre de usuario 01";
+            // 
+            // NombreUsuario2_lbl
+            // 
+            this.NombreUsuario2_lbl.AutoSize = true;
+            this.NombreUsuario2_lbl.Location = new System.Drawing.Point(79, 224);
+            this.NombreUsuario2_lbl.Name = "NombreUsuario2_lbl";
+            this.NombreUsuario2_lbl.Size = new System.Drawing.Size(111, 13);
+            this.NombreUsuario2_lbl.TabIndex = 8;
+            this.NombreUsuario2_lbl.Text = "Nombre de usuario 02";
+            // 
+            // CerrarSesion1_btn
+            // 
+            this.CerrarSesion1_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CerrarSesion1_btn.Location = new System.Drawing.Point(199, 190);
+            this.CerrarSesion1_btn.Name = "CerrarSesion1_btn";
+            this.CerrarSesion1_btn.Size = new System.Drawing.Size(93, 23);
+            this.CerrarSesion1_btn.TabIndex = 9;
+            this.CerrarSesion1_btn.Text = "Cerrar sesión";
+            this.CerrarSesion1_btn.UseVisualStyleBackColor = true;
+            this.CerrarSesion1_btn.Visible = false;
+            this.CerrarSesion1_btn.Click += new System.EventHandler(this.CerrarSesion1_btn_Click);
+            // 
+            // CerrarSesion2_btn
+            // 
+            this.CerrarSesion2_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CerrarSesion2_btn.Location = new System.Drawing.Point(199, 219);
+            this.CerrarSesion2_btn.Name = "CerrarSesion2_btn";
+            this.CerrarSesion2_btn.Size = new System.Drawing.Size(93, 23);
+            this.CerrarSesion2_btn.TabIndex = 10;
+            this.CerrarSesion2_btn.Text = "Cerrar sesión";
+            this.CerrarSesion2_btn.UseVisualStyleBackColor = true;
+            this.CerrarSesion2_btn.Visible = false;
+            this.CerrarSesion2_btn.Click += new System.EventHandler(this.CerrarSesion2_btn_Click);
+            // 
             // Inicio_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 178);
+            this.ClientSize = new System.Drawing.Size(379, 246);
+            this.Controls.Add(this.CerrarSesion2_btn);
+            this.Controls.Add(this.CerrarSesion1_btn);
+            this.Controls.Add(this.NombreUsuario2_lbl);
+            this.Controls.Add(this.NombreUsuario1_lbl);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.Cerrar_btn);
             this.Controls.Add(this.Ingresar_btn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Jugar_btn);
             this.Controls.Add(this.Registrarse_btn);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Inicio_frm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio - Trabajo Práctico";
+            this.Load += new System.EventHandler(this.Inicio_frm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,6 +189,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Ingresar_btn;
         private System.Windows.Forms.Button Cerrar_btn;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label NombreUsuario1_lbl;
+        private System.Windows.Forms.Label NombreUsuario2_lbl;
+        private System.Windows.Forms.Button CerrarSesion1_btn;
+        private System.Windows.Forms.Button CerrarSesion2_btn;
     }
 }
 

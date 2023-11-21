@@ -13,14 +13,15 @@ namespace DAL
     {
         public override void Actualizar(BE.Usuario obj)
         {
+            acceso.Conectar();
             List<SqlParameter> parametros = new List<SqlParameter>
             {
                 acceso.CrearParametro(obj.Id, "@id"),
                 acceso.CrearParametro(obj.Nombre, "@nombre"),
                 acceso.CrearParametro(obj.Password, "@password"),
             };
-
             acceso.Escribir("USUARIO_ACTUALIZAR", parametros);
+            acceso.Desconectar();
         }
 
         public override void Borrar(int id)
@@ -30,6 +31,7 @@ namespace DAL
 
         public override void Insertar(BE.Usuario obj)
         {
+            acceso.Conectar();
             List<SqlParameter> parametros = new List<SqlParameter>
             {
                 acceso.CrearParametro(obj.Nombre, "@nombre"),
@@ -37,34 +39,39 @@ namespace DAL
             };
             
             acceso.Escribir("USUARIO_ALTA", parametros);
+            acceso.Desconectar();
         }
 
-        public override Usuario Listar()
+        public override List<BE.Usuario> Listar()
         {
             throw new NotImplementedException();
         }
 
-        public override BE.Usuario Obtener(Usuario obj)
+        public BE.Usuario Obtener(string usuario, string password)
         {
+            acceso.Conectar();
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                acceso.CrearParametro(obj.Nombre, "@nombre"),
-                acceso.CrearParametro(obj.Password, "@password"),
+                acceso.CrearParametro(usuario, "@nombre"),
+                acceso.CrearParametro(password, "@password"),
             };
 
             DataTable tabla = acceso.Leer("USUARIO_OBTENER", parametros);
-            BE.Usuario usuario;
 
+            BE.Usuario usuarioEncontrado;
             if (tabla.Rows.Count > 0)
             {
                 DataRow registro = tabla.Rows[0];
-                usuario = new BE.Usuario(int.Parse(registro["ID"].ToString()),
-                    registro["NOMBRE"].ToString(),
-                    registro["PASSWORD"].ToString());
+                usuarioEncontrado = new BE.Usuario
+                {
+                    Id = int.Parse(registro["id"].ToString()),
+                    Nombre = registro["nombre"].ToString(),
+                    Password = registro["password"].ToString()
+                };
             }
-            else usuario = null;
-
-            return usuario;
+            else usuarioEncontrado = null;
+            acceso.Desconectar();
+            return usuarioEncontrado;
         }
     }
 }

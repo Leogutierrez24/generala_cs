@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.Tablero_dataGridView = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
@@ -73,16 +73,16 @@
             this.Tablero_dataGridView.Location = new System.Drawing.Point(16, 35);
             this.Tablero_dataGridView.Name = "Tablero_dataGridView";
             this.Tablero_dataGridView.ReadOnly = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Tablero_dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            this.Tablero_dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Tablero_dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            this.Tablero_dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.Tablero_dataGridView.Size = new System.Drawing.Size(388, 338);
             this.Tablero_dataGridView.TabIndex = 1;
             // 
@@ -183,6 +183,7 @@
             // 
             // TerminarTurno_btn
             // 
+            this.TerminarTurno_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.TerminarTurno_btn.Location = new System.Drawing.Point(141, 126);
             this.TerminarTurno_btn.Name = "TerminarTurno_btn";
             this.TerminarTurno_btn.Size = new System.Drawing.Size(95, 32);
@@ -193,6 +194,7 @@
             // 
             // CerrarCategoria_btn
             // 
+            this.CerrarCategoria_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CerrarCategoria_btn.Location = new System.Drawing.Point(141, 88);
             this.CerrarCategoria_btn.Name = "CerrarCategoria_btn";
             this.CerrarCategoria_btn.Size = new System.Drawing.Size(95, 32);
@@ -203,6 +205,7 @@
             // 
             // TirarDados_btn
             // 
+            this.TirarDados_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.TirarDados_btn.Location = new System.Drawing.Point(141, 50);
             this.TirarDados_btn.Name = "TirarDados_btn";
             this.TirarDados_btn.Size = new System.Drawing.Size(95, 32);
@@ -213,6 +216,7 @@
             // 
             // ApartarDados_btn
             // 
+            this.ApartarDados_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ApartarDados_btn.ForeColor = System.Drawing.SystemColors.Desktop;
             this.ApartarDados_btn.Location = new System.Drawing.Point(566, 175);
             this.ApartarDados_btn.Name = "ApartarDados_btn";
@@ -224,6 +228,7 @@
             // 
             // PonerDados_btn
             // 
+            this.PonerDados_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PonerDados_btn.ForeColor = System.Drawing.SystemColors.Desktop;
             this.PonerDados_btn.Location = new System.Drawing.Point(422, 175);
             this.PonerDados_btn.Name = "PonerDados_btn";
@@ -256,6 +261,7 @@
             // 
             // PonerTodos_btn
             // 
+            this.PonerTodos_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PonerTodos_btn.ForeColor = System.Drawing.SystemColors.Desktop;
             this.PonerTodos_btn.Location = new System.Drawing.Point(422, 222);
             this.PonerTodos_btn.Name = "PonerTodos_btn";
@@ -267,6 +273,7 @@
             // 
             // Ayuda_btn
             // 
+            this.Ayuda_btn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Ayuda_btn.Location = new System.Drawing.Point(866, 477);
             this.Ayuda_btn.Name = "Ayuda_btn";
             this.Ayuda_btn.Size = new System.Drawing.Size(75, 23);

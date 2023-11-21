@@ -13,9 +13,12 @@ namespace UI.Login
 {
     public partial class Registrar_frm : Form
     {
+        public BLL.Usuario gestor;
+
         public Registrar_frm()
         {
             InitializeComponent();
+            gestor = new BLL.Usuario();
         }
 
         private bool ComprobarCampos()
@@ -56,7 +59,10 @@ namespace UI.Login
             {
                 if (ComprobarPassword())
                 {
+                    BE.Usuario usuario = BLL.Usuario.CrearUsuario(Usuario_textBox.Text, Password_textBox.Text);
+                    gestor.Registrar(usuario);
                     MessageBox.Show("Usuario creado");
+                    this.Close();
                 }
                 else
                 {

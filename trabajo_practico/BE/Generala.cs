@@ -55,6 +55,14 @@ namespace BE
             set { _ganador = value; }
         }
 
+        private bool _partidaTerminada;
+
+        public bool PartidaTerminada
+        {
+            get { return _partidaTerminada; }
+            set { _partidaTerminada = value; }
+        }
+
         private bool _generalaServida = false;
         public bool GeneralaServida
         {

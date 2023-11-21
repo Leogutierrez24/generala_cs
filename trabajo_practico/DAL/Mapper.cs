@@ -16,9 +16,6 @@ namespace DAL
 
         public abstract void Borrar(int id);
 
-        public abstract T Listar();
-
-        public abstract T Obtener(T obj);
-
+        public abstract List<T> Listar();
     }
 }

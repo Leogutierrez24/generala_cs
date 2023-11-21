@@ -28,13 +28,5 @@ namespace BE
             get { return _password; }
             set { _password = value; }
         }
-
-        public Usuario(int id, string nombre, string password) 
-        { 
-            _id = id;
-            _nombre = nombre;
-            _password = password;
-        }
-
     }
 }

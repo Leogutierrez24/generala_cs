@@ -42,14 +42,14 @@
             this.Password_textBox.Location = new System.Drawing.Point(12, 74);
             this.Password_textBox.Name = "Password_textBox";
             this.Password_textBox.PasswordChar = '*';
-            this.Password_textBox.Size = new System.Drawing.Size(204, 20);
+            this.Password_textBox.Size = new System.Drawing.Size(266, 20);
             this.Password_textBox.TabIndex = 8;
             // 
             // Usuario_textBox
             // 
             this.Usuario_textBox.Location = new System.Drawing.Point(12, 25);
             this.Usuario_textBox.Name = "Usuario_textBox";
-            this.Usuario_textBox.Size = new System.Drawing.Size(204, 20);
+            this.Usuario_textBox.Size = new System.Drawing.Size(266, 20);
             this.Usuario_textBox.TabIndex = 7;
             // 
             // label1
@@ -108,7 +108,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(228, 177);
+            this.ClientSize = new System.Drawing.Size(290, 177);
             this.Controls.Add(this.Volver_btn);
             this.Controls.Add(this.Ingresar_btn);
             this.Controls.Add(this.Error_lbl);

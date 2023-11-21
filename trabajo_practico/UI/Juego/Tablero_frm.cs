@@ -1,5 +1,4 @@
-﻿using JUEGO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,21 +12,35 @@ namespace UI.Juego
 {
     public partial class Tablero_frm : Form
     {
-        public Generala generala;
+        public BE.Generala generala;
+
+        public readonly BLL.Generala gestor = new BLL.Generala();
 
         public bool TableroVacio = false;
 
-        public Tablero_frm()
+        private bool _volverJugar = false;
+
+        private readonly ResumenPartida_frm _resumenPartida;
+
+        public Tablero_frm(BE.Usuario jugador01, BE.Usuario jugador02)
         {
             InitializeComponent();
-            generala = new Generala();
+            generala = gestor.InicializarGenerala();
+            gestor.EstablecerJugador(generala, jugador01);
+            gestor.EstablecerJugador(generala, jugador02);
+
+            _resumenPartida = new ResumenPartida_frm(generala, gestor);
+            _resumenPartida.NuevoJuego += ResumenPartida_frm_NuevoJuego;
+        }
+
+        private void ResumenPartida_frm_NuevoJuego(object sender, NuevoJuegoEventArgs e)
+        {
+            this._volverJugar = e.Resultado;
         }
 
         private void Tablero_frm_Load(object sender, EventArgs e)
         {
-            generala.NuevoJugador("Jugador 01");
-            generala.NuevoJugador("Jugador 02");
-            generala.IniciarJuego();
+            gestor.IniciarJuego(generala);
             CrearTablero();
             ComenzarJuego();
         }
@@ -49,6 +62,18 @@ namespace UI.Juego
             ActualizarPuntajes();
         }
 
+        private void ReiniciarJuego()
+        {
+            gestor.NuevoJuego(generala);
+            DesbloquearBotones();
+            DesbloquearBotonesDados();
+            CrearTablero();
+            ActualizarDados();
+            ActualizarDadosApartados();
+            ActualizarCubilete();
+            ActualizarJugador();
+        }
+
         private void ActualizarPuntajes()
         {
             for (int i = 0; i < generala.Jugadores.Count; i++)
@@ -66,54 +91,36 @@ namespace UI.Juego
             Tiros_lbl.Text = generala.Turno.TirosDisponibles.ToString();
         }
 
-        private void ActualizarCubilete()
+        private void ActualizarContenedorDados(List<BE.Dado> listaDados, ListBox contenedor, string msj = "Contenedor vacío.")
         {
-            Cubilete_listBox.Items.Clear();
+            contenedor.Items.Clear();
 
-            if (generala.Cubilete.Dados.Count > 0)
+            if (listaDados.Count > 0)
             {
-                generala.Cubilete.Dados.ForEach(dado =>
+                listaDados.ForEach(dado =>
                 {
-                    Cubilete_listBox.Items.Add(dado);
+                    contenedor.Items.Add(dado);
                 });
+                contenedor.DisplayMember = "Valor";
             } else
             {
-                Cubilete_listBox.Items.Add("El cubilete esta vacío");
+                contenedor.Items.Add(msj);
             }
+        }
+
+        private void ActualizarCubilete()
+        {
+            ActualizarContenedorDados(generala.Cubilete.Dados, Cubilete_listBox, "El cubilete esta vacío");
         }
 
         private void ActualizarDados()
         {
-            DadosEnTablero_listBox.Items.Clear();
-
-            if (generala.Tablero.DadosEnTablero.Count > 0)
-            {
-                TableroVacio = false;
-                generala.Tablero.DadosEnTablero.ForEach(dado =>
-                {
-                    DadosEnTablero_listBox.Items.Add(dado);
-                });
-            } else
-            {
-                TableroVacio = true;
-                DadosEnTablero_listBox.Items.Add("No hay dados en el tablero");
-            }
+            ActualizarContenedorDados(generala.Tablero.DadosEnTablero, DadosEnTablero_listBox, "No hay dados en el tablero");
         }
 
         private void ActualizarDadosApartados()
         {
-            DadosApartados_listBox.Items.Clear();
-
-            if (generala.Tablero.DadosApartados.Count > 0)
-            {
-                generala.Tablero.DadosApartados.ForEach(dado =>
-                {
-                    DadosApartados_listBox.Items.Add(dado);
-                });
-            } else
-            {
-                DadosApartados_listBox.Items.Add("No hay dados apartados");
-            }
+            ActualizarContenedorDados(generala.Tablero.DadosApartados, DadosApartados_listBox, "No hay dados apartados");         
         }
 
         private void TurnoJugado()
@@ -130,9 +137,9 @@ namespace UI.Juego
             if (generala.Turno.TirosDisponibles == 0) BloquearBotonesDados();
         }
 
-        private void DetectarJuegoServido(Tiro tiro)
+        private void DetectarJuegoServido(BE.Tiro tiro)
         {
-            if (tiro.CategoriaServida != CategoriaServida.Ninguna) MessageBox.Show("¡Categoria servida obtenida!\n" + tiro.CategoriaServida);       
+            if (tiro.CategoriaServida != BE.CategoriaServida.Ninguna) MessageBox.Show("¡Categoria servida obtenida!\n" + tiro.CategoriaServida);       
         }
 
         private void BloquearBotones()
@@ -179,7 +186,7 @@ namespace UI.Juego
             {
                 if (generala.Cubilete.Dados.Count != 0)
                 {
-                    Tiro tiroJugado = generala.Jugar();
+                    BE.Tiro tiroJugado = gestor.Jugar(generala);
                     DetectarJuegoServido(tiroJugado);
                     TurnoJugado();
                     ComprobarTirosDisponibles();
@@ -198,7 +205,7 @@ namespace UI.Juego
         {
             if (generala.Turno.TirosDisponibles < 3)
             {
-                CerrarCategoria_frm frm = new CerrarCategoria_frm(generala);
+                CerrarCategoria_frm frm = new CerrarCategoria_frm(generala, gestor);
                 frm.ShowDialog();
                 ActualizarPuntajes();
                 if (generala.Turno.CategoriaCerrada != null) BloquearBotones();
@@ -208,32 +215,39 @@ namespace UI.Juego
 
         private void TerminarTurno_btn_Click(object sender, EventArgs e)
         {
-            if (generala.Turno.CategoriaCerrada != null)
-            {
-                generala.TerminarTurno();
-                DesbloquearBotones();
-                ActualizarJugador();
-                ActualizarDados();
-                ActualizarDadosApartados();
-                ActualizarCubilete();
-                DesbloquearBotonesDados();
-            } else
-            {
-                MessageBox.Show("Es necesario Cerrar una categoria para poder terminar el turno.");
-            }
+            
+                if (generala.Turno.CategoriaCerrada != null)
+                {
+                    gestor.TerminarTurno(generala);
+                    if (!generala.PartidaTerminada)
+                    {
+                        DesbloquearBotones();
+                        ActualizarJugador();
+                        ActualizarDados();
+                        ActualizarDadosApartados();
+                        ActualizarCubilete();
+                        DesbloquearBotonesDados();
+                    } else 
+                    {
+                        _resumenPartida.ShowDialog();
+                        if (_volverJugar) ReiniciarJuego();
+                        else this.Close();
+                    }
+                } else MessageBox.Show("Es necesario Cerrar una categoria para poder terminar el turno.");
         }
 
         private void PonerDados_btn_Click(object sender, EventArgs e)
         {
             if (DadosEnTablero_listBox.SelectedItems.Count != 0)
             {
-                List<Dado> dadosSeleccionados = new List<Dado>();
+                List<BE.Dado> dadosSeleccionados = new List<BE.Dado>();
                 foreach (object item in DadosEnTablero_listBox.SelectedItems)
                 {
-                    dadosSeleccionados.Add(item as Dado);
+                    dadosSeleccionados.Add(item as BE.Dado);
                 }
 
-                generala.PonerDadosCubilete(dadosSeleccionados);
+                BLL.Cubilete.PonerDados(generala.Cubilete, dadosSeleccionados);
+                BLL.Tablero.QuitarDadoTablero(generala.Tablero, dadosSeleccionados);
                 ActualizarDados();
                 ActualizarCubilete();
             } else
@@ -246,13 +260,13 @@ namespace UI.Juego
         {
             if (DadosEnTablero_listBox.SelectedItems.Count != 0)
             {
-                List<Dado> dadosSeleccionados = new List<Dado>();
+                List<BE.Dado> dadosSeleccionados = new List<BE.Dado>();
                 foreach(object item in DadosEnTablero_listBox.SelectedItems)
                 {
-                    dadosSeleccionados.Add(item as Dado);
+                    dadosSeleccionados.Add(item as BE.Dado);
                 }
 
-                generala.Tablero.ApartarDados(dadosSeleccionados);
+                BLL.Tablero.ApartarDados(generala.Tablero, dadosSeleccionados);
                 ActualizarDados();
                 ActualizarDadosApartados();
             } else
@@ -265,12 +279,13 @@ namespace UI.Juego
         {
             if (!TableroVacio)
             {
-                List<Dado> todosDados = new List<Dado>();
+                List<BE.Dado> todosDados = new List<BE.Dado>();
                 foreach (object dado in DadosEnTablero_listBox.Items)
                 {
-                    todosDados.Add(dado as Dado);
+                    todosDados.Add(dado as BE.Dado);
                 }
-                generala.PonerDadosCubilete(todosDados);
+                BLL.Cubilete.PonerDados(generala.Cubilete, todosDados);
+                BLL.Tablero.QuitarDadoTablero(generala.Tablero, todosDados);
                 ActualizarDados();
                 ActualizarCubilete();
             } else

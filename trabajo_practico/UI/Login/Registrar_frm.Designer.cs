@@ -32,13 +32,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Error_lbl = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.PasswordRep_textBox = new System.Windows.Forms.TextBox();
             this.Password_textBox = new System.Windows.Forms.TextBox();
             this.Usuario_textBox = new System.Windows.Forms.TextBox();
             this.CrearUsuario_btn = new System.Windows.Forms.Button();
             this.Cancelar_btn = new System.Windows.Forms.Button();
-            this.Error_lbl = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,6 +86,18 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Crear nuevo usuario";
             // 
+            // Error_lbl
+            // 
+            this.Error_lbl.AutoSize = true;
+            this.Error_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Error_lbl.ForeColor = System.Drawing.Color.Red;
+            this.Error_lbl.Location = new System.Drawing.Point(6, 175);
+            this.Error_lbl.Name = "Error_lbl";
+            this.Error_lbl.Size = new System.Drawing.Size(87, 13);
+            this.Error_lbl.TabIndex = 7;
+            this.Error_lbl.Text = "Texto de error";
+            this.Error_lbl.Visible = false;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -99,6 +111,7 @@
             // 
             this.PasswordRep_textBox.Location = new System.Drawing.Point(9, 141);
             this.PasswordRep_textBox.Name = "PasswordRep_textBox";
+            this.PasswordRep_textBox.PasswordChar = '*';
             this.PasswordRep_textBox.Size = new System.Drawing.Size(204, 20);
             this.PasswordRep_textBox.TabIndex = 5;
             // 
@@ -106,6 +119,7 @@
             // 
             this.Password_textBox.Location = new System.Drawing.Point(9, 90);
             this.Password_textBox.Name = "Password_textBox";
+            this.Password_textBox.PasswordChar = '*';
             this.Password_textBox.Size = new System.Drawing.Size(204, 20);
             this.Password_textBox.TabIndex = 4;
             // 
@@ -137,18 +151,6 @@
             this.Cancelar_btn.Text = "Cancelar";
             this.Cancelar_btn.UseVisualStyleBackColor = true;
             this.Cancelar_btn.Click += new System.EventHandler(this.Cancelar_btn_Click);
-            // 
-            // Error_lbl
-            // 
-            this.Error_lbl.AutoSize = true;
-            this.Error_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Error_lbl.ForeColor = System.Drawing.Color.Red;
-            this.Error_lbl.Location = new System.Drawing.Point(6, 175);
-            this.Error_lbl.Name = "Error_lbl";
-            this.Error_lbl.Size = new System.Drawing.Size(87, 13);
-            this.Error_lbl.TabIndex = 7;
-            this.Error_lbl.Text = "Texto de error";
-            this.Error_lbl.Visible = false;
             // 
             // Registrar_frm
             // 

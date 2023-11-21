@@ -9,10 +9,27 @@ namespace BLL
 {
     public class Usuario
     {
+        public static BE.Usuario CrearUsuario(string usuario, string password)
+        {
+            BE.Usuario nuevoUsuario = new BE.Usuario
+            {
+                Nombre = usuario,
+                Password = password
+            };
+            return nuevoUsuario;
+        }
+
         public void Registrar(BE.Usuario usuario)
         {
             UsuarioMP mapper = new UsuarioMP();
             mapper.Insertar(usuario);
+        }
+
+        public BE.Usuario Ingresar(BE.Usuario usuario)
+        {
+            UsuarioMP mapper = new UsuarioMP();
+            BE.Usuario usuarioEncontrado = mapper.Obtener(usuario.Nombre, usuario.Password);
+            return usuarioEncontrado;
         }
 
         public void Eliminar(int id)
@@ -25,10 +42,10 @@ namespace BLL
 
         }
 
-        public BE.Usuario IniciarSesion(string nombre, string password)
+        /*public BE.Usuario IniciarSesion(string nombre, string password)
         {
             return new BE.Usuario();
-        }
+        }*/
 
     }
 }

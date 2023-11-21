@@ -1,5 +1,4 @@
 ﻿using System;
-using JUEGO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,12 +13,14 @@ namespace UI.Juego
     public partial class CerrarCategoria_frm : Form
     {
 
-        public readonly Generala generala;
+        public readonly BE.Generala generala;
+        public readonly BLL.Generala gestor;
 
-        public CerrarCategoria_frm(Generala generala)
+        public CerrarCategoria_frm(BE.Generala generala, BLL.Generala gestor)
         {
             InitializeComponent();
             this.generala = generala;
+            this.gestor = gestor;
         }
 
         private void CargarCategorias()
@@ -28,11 +29,13 @@ namespace UI.Juego
             {
                 if (categoria.Cerrada != true) Categorias_listBox.Items.Add(categoria);
             });
+            Categorias_listBox.DisplayMember = "Nombre";
         }
 
         private void CargarDados()
         {
             generala.Dados.ForEach(dado => DadosObtenidos_listBox.Items.Add(dado));
+            DadosObtenidos_listBox.DisplayMember = "Valor";
         }
 
         private void CerrarCategoria_frm_Load(object sender, EventArgs e)
@@ -45,7 +48,7 @@ namespace UI.Juego
         {
             if (Categorias_listBox.SelectedItems.Count == 1)
             {
-                generala.PuntuarCerrarCategoria(Categorias_listBox.SelectedItem as Categoria);
+                gestor.PuntuarCerrarCategoria(generala, Categorias_listBox.SelectedItem as BE.Categoria);
                 Close();
             } else
             {

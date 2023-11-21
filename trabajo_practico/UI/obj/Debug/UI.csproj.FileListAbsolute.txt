@@ -1,8 +1,6 @@
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\bin\Debug\UI.exe.config
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\bin\Debug\UI.exe
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\bin\Debug\UI.pdb
-I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\bin\Debug\JUEGO.dll
-I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\bin\Debug\JUEGO.pdb
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.csproj.AssemblyReference.cache
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Juego.Tablero_frm.resources
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Properties.Resources.resources
@@ -45,3 +43,5 @@ D:\generala_cs-main\trabajo_practico\UI\obj\Debug\UI.Promps.Prompt_frm.resources
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Juego.CerrarCategoria_frm.resources
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Promps.Prompt_frm.resources
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Login.Registrar_frm.resources
+I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Login.Ingresar_frm.resources
+I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Juego.ResumenPartida_frm.resources

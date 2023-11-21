@@ -37,7 +37,7 @@ namespace BLL
             return nuevoTiro;
         }
 
-        private void VerificarTirosDisponibles(BE.Turno turno)
+        private static void VerificarTirosDisponibles(BE.Turno turno)
         {
             if (turno.TirosDisponibles == 0) Terminar(turno);
         }
