@@ -39,12 +39,13 @@
             this.NombreUsuario2_lbl = new System.Windows.Forms.Label();
             this.CerrarSesion1_btn = new System.Windows.Forms.Button();
             this.CerrarSesion2_btn = new System.Windows.Forms.Button();
+            this.VerRegistros_btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Registrarse_btn
             // 
             this.Registrarse_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Registrarse_btn.Location = new System.Drawing.Point(91, 58);
+            this.Registrarse_btn.Location = new System.Drawing.Point(41, 59);
             this.Registrarse_btn.Name = "Registrarse_btn";
             this.Registrarse_btn.Size = new System.Drawing.Size(93, 43);
             this.Registrarse_btn.TabIndex = 0;
@@ -55,7 +56,7 @@
             // Jugar_btn
             // 
             this.Jugar_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Jugar_btn.Location = new System.Drawing.Point(199, 58);
+            this.Jugar_btn.Location = new System.Drawing.Point(149, 59);
             this.Jugar_btn.Name = "Jugar_btn";
             this.Jugar_btn.Size = new System.Drawing.Size(93, 43);
             this.Jugar_btn.TabIndex = 1;
@@ -67,7 +68,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(73, 9);
+            this.label1.Location = new System.Drawing.Point(78, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(233, 24);
             this.label1.TabIndex = 2;
@@ -76,7 +77,7 @@
             // Ingresar_btn
             // 
             this.Ingresar_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ingresar_btn.Location = new System.Drawing.Point(91, 107);
+            this.Ingresar_btn.Location = new System.Drawing.Point(41, 108);
             this.Ingresar_btn.Name = "Ingresar_btn";
             this.Ingresar_btn.Size = new System.Drawing.Size(93, 43);
             this.Ingresar_btn.TabIndex = 3;
@@ -87,7 +88,7 @@
             // Cerrar_btn
             // 
             this.Cerrar_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cerrar_btn.Location = new System.Drawing.Point(199, 107);
+            this.Cerrar_btn.Location = new System.Drawing.Point(149, 108);
             this.Cerrar_btn.Name = "Cerrar_btn";
             this.Cerrar_btn.Size = new System.Drawing.Size(93, 43);
             this.Cerrar_btn.TabIndex = 4;
@@ -155,11 +156,23 @@
             this.CerrarSesion2_btn.Visible = false;
             this.CerrarSesion2_btn.Click += new System.EventHandler(this.CerrarSesion2_btn_Click);
             // 
+            // VerRegistros_btn
+            // 
+            this.VerRegistros_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VerRegistros_btn.Location = new System.Drawing.Point(248, 59);
+            this.VerRegistros_btn.Name = "VerRegistros_btn";
+            this.VerRegistros_btn.Size = new System.Drawing.Size(93, 43);
+            this.VerRegistros_btn.TabIndex = 11;
+            this.VerRegistros_btn.Text = "Ver registros";
+            this.VerRegistros_btn.UseVisualStyleBackColor = true;
+            this.VerRegistros_btn.Click += new System.EventHandler(this.VerRegistros_btn_Click);
+            // 
             // Inicio_frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 246);
+            this.ClientSize = new System.Drawing.Size(380, 246);
+            this.Controls.Add(this.VerRegistros_btn);
             this.Controls.Add(this.CerrarSesion2_btn);
             this.Controls.Add(this.CerrarSesion1_btn);
             this.Controls.Add(this.NombreUsuario2_lbl);
@@ -195,6 +208,7 @@
         private System.Windows.Forms.Label NombreUsuario2_lbl;
         private System.Windows.Forms.Button CerrarSesion1_btn;
         private System.Windows.Forms.Button CerrarSesion2_btn;
+        private System.Windows.Forms.Button VerRegistros_btn;
     }
 }
 

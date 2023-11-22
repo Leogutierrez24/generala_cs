@@ -1,5 +1,6 @@
 ﻿using DAL;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,11 +10,18 @@ namespace BLL
 {
     public class SesionUsuario : Sesion<BE.SesionUsuario>
     {
-        public BE.SesionUsuario NuevaSesionUsuario(int usuarioID)
+        private readonly SesionUsuarioMP _mapper;
+
+        public SesionUsuario() 
+        {
+            _mapper = new SesionUsuarioMP();
+        }
+
+        public BE.SesionUsuario NuevaSesionUsuario(BE.Usuario usuario)
         {
             BE.SesionUsuario sesion = new BE.SesionUsuario
             {
-                UsuarioID = usuarioID,
+                Usuario = usuario,
                 Inicio = DateTime.Now,
             };
 
@@ -23,13 +31,12 @@ namespace BLL
         public override void Guardar(BE.SesionUsuario obj)
         {
             obj.Final = DateTime.Now;
-            SesionUsuarioMP mapper = new SesionUsuarioMP();
-            mapper.Insertar(obj);
+            _mapper.Insertar(obj);
         }
 
         public override List<BE.SesionUsuario> ObtenerTodas()
         {
-            throw new NotImplementedException();
+            return _mapper.Listar();
         }
     }
 }

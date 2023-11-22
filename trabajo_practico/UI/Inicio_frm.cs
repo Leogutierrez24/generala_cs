@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.Login;
+using UI.Registros;
 
 namespace UI
 {
@@ -21,7 +22,11 @@ namespace UI
 
         private BE.SesionUsuario _sesion02;
 
+        private BE.SesionPartida _partida;
+
         private readonly BLL.SesionUsuario _gestorSesion;
+
+        private readonly BLL.SesionPartida _gestorPartida;
 
         private readonly Ingresar_frm _ingresarFrm;
 
@@ -33,6 +38,7 @@ namespace UI
             usuario01 = null;
             usuario02 = null;
             _gestorSesion = new BLL.SesionUsuario();
+            _gestorPartida = new BLL.SesionPartida();
         }
 
         private void Ingresar_frm_LogearUsuario(object sender, UsuarioEventArgs e)
@@ -40,12 +46,12 @@ namespace UI
             if (usuario01 == null)
             {
                 usuario01 = e.UsuarioRetornado;
-                _sesion01 = _gestorSesion.NuevaSesionUsuario(usuario01.Id);
+                _sesion01 = _gestorSesion.NuevaSesionUsuario(usuario01);
             }
             else if (usuario02 == null)
             {
                 usuario02 = e.UsuarioRetornado;
-                _sesion02 = _gestorSesion.NuevaSesionUsuario(usuario02.Id);
+                _sesion02 = _gestorSesion.NuevaSesionUsuario(usuario02);
             }
         }
 
@@ -67,7 +73,8 @@ namespace UI
                 MessageBox.Show("¡Se necesitan dos usuarios para poder jugar!");
             } else
             {
-                Juego.Tablero_frm form = new Juego.Tablero_frm(usuario01, usuario02);
+                _partida = _gestorPartida.NuevaPartida(usuario01, usuario02);
+                Juego.Tablero_frm form = new Juego.Tablero_frm(usuario01, usuario02, _partida, _gestorPartida);
                 form.Show();
                 this.Hide();
             }
@@ -124,6 +131,12 @@ namespace UI
             CerrarSesion(NombreUsuario2_lbl, CerrarSesion2_btn);
             _gestorSesion.Guardar(_sesion02);
             _sesion02 = null;
+        }
+
+        private void VerRegistros_btn_Click(object sender, EventArgs e)
+        {
+            Registro_Frm form = new Registro_Frm();
+            form.ShowDialog();
         }
     }
 }

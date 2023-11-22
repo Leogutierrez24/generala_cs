@@ -8,9 +8,10 @@ namespace BLL
 {
     public class Jugador
     {
-        public static BE.Jugador CrearJugador(string nombre)
+        public static BE.Jugador CrearJugador(int id, string nombre)
         {
             BE.Jugador jugador = new BE.Jugador();
+            jugador.UsuarioID = id;
             jugador.Nombre = nombre;
             jugador.Categorias = new List<BE.Categoria>
             {

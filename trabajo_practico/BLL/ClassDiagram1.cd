@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BLL.Categoria" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAACAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Categoria.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Cubilete" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Cubilete.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Dado" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAEABAAA=</HashCode>
+      <FileName>Dado.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Generala" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EwAQAFAEAEAAAwAAAhNQQAAIACAACgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Generala.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Helper" Collapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Helper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Jugador" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Jugador.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Sesion&lt;T&gt;" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Sesion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.SesionPartida">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAABAAAAAAAAAAAAAAAABAAAAAE=</HashCode>
+      <FileName>SesionPartida.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.SesionUsuario">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAgAAAAAAABAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>SesionUsuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Tablero" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAQAAAAAAAAAAAAEBAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Tablero.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Tiro" Collapsed="true">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tiro.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Turno" Collapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAARAAAAIAAAAAABAAAAA=</HashCode>
+      <FileName>Turno.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BLL.Usuario" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAACAACAAAAAAAAAAAAAAAAAAAAAgAAAQ=</HashCode>
+      <FileName>Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="BLL.CategoriaJuego" Collapsed="true">
+    <Position X="5.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIABQAAAAABAACAAACAAAAEABAgAAAAAAAAI=</HashCode>
+      <FileName>CategoriaJuego.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BLL.CategoriaServida" Collapsed="true">
+    <Position X="7" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAEABAgAAAAAAAAA=</HashCode>
+      <FileName>CategoriaServida.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BLL.TipoCategoria" Collapsed="true">
+    <Position X="8.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAgAAAAAAA=</HashCode>
+      <FileName>TipoCategoria.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

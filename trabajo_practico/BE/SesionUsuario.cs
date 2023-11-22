@@ -8,11 +8,11 @@ namespace BE
 {
     public class SesionUsuario : Sesion
     {
-		private int _usuarioID;
-		public int UsuarioID
+		private BE.Usuario _usuario;
+		public BE.Usuario Usuario
 		{
-			get { return _usuarioID; }
-			set { _usuarioID = value; }
+			get { return _usuario; }
+			set { _usuario = value; }
 		}
 	}
 }

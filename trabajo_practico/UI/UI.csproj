@@ -91,13 +91,13 @@
       <DependentUpon>Registrar_frm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Prompts\Prompt_frm.cs">
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registros\Registro_Frm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Prompts\Prompt_frm.Designer.cs">
-      <DependentUpon>Prompt_frm.cs</DependentUpon>
+    <Compile Include="Registros\Registro_Frm.Designer.cs">
+      <DependentUpon>Registro_Frm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Inicio_frm.resx">
       <DependentUpon>Inicio_frm.cs</DependentUpon>
     </EmbeddedResource>
@@ -119,9 +119,6 @@
     <EmbeddedResource Include="Login\Registrar_frm.resx">
       <DependentUpon>Registrar_frm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Prompts\Prompt_frm.resx">
-      <DependentUpon>Prompt_frm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -132,6 +129,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Registros\Registro_Frm.resx">
+      <DependentUpon>Registro_Frm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -155,9 +155,7 @@
       <Name>BLL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Usuario\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Imagenes\tablero_background.jpg" />
   </ItemGroup>

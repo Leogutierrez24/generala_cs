@@ -22,12 +22,18 @@ namespace UI.Juego
 
         private readonly ResumenPartida_frm _resumenPartida;
 
-        public Tablero_frm(BE.Usuario jugador01, BE.Usuario jugador02)
+        private BE.SesionPartida _partida;
+
+        private readonly BLL.SesionPartida _gestorPartida;
+
+        public Tablero_frm(BE.Usuario jugador01, BE.Usuario jugador02, BE.SesionPartida partida, BLL.SesionPartida gestorPartida)
         {
             InitializeComponent();
             generala = gestor.InicializarGenerala();
             gestor.EstablecerJugador(generala, jugador01);
             gestor.EstablecerJugador(generala, jugador02);
+            _partida = partida;
+            _gestorPartida = gestorPartida;
 
             _resumenPartida = new ResumenPartida_frm(generala, gestor);
             _resumenPartida.NuevoJuego += ResumenPartida_frm_NuevoJuego;
@@ -227,11 +233,15 @@ namespace UI.Juego
                         ActualizarDadosApartados();
                         ActualizarCubilete();
                         DesbloquearBotonesDados();
-                    } else 
-                    {
+                    } else {
+                        _gestorPartida.Guardar(_partida);
                         _resumenPartida.ShowDialog();
-                        if (_volverJugar) ReiniciarJuego();
-                        else this.Close();
+                        if (_volverJugar)
+                        {
+                            BE.SesionPartida nuevaPartida = _gestorPartida.NuevaPartida(_partida.Usuario01, _partida.Usuario02);
+                            _partida = nuevaPartida;
+                            ReiniciarJuego();
+                        } else this.Close();
                     }
                 } else MessageBox.Show("Es necesario Cerrar una categoria para poder terminar el turno.");
         }

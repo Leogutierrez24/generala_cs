@@ -67,6 +67,14 @@ namespace BLL
             NuevoTurno(generala, generala.Jugadores[0]);
         }
 
+        private bool DeterminarEmpate(BE.Generala generala)
+        {
+            int ptsJugador01 = Jugador.CalcularPuntajeTotal(generala.Jugadores[0]);
+            int ptsJugador02 = Jugador.CalcularPuntajeTotal(generala.Jugadores[1]);
+
+            return ptsJugador01 == ptsJugador02;
+        }
+
         private void DeterminarGanador(BE.Generala generala)
         {
             BE.Jugador jugadorMayorPuntaje = null;
@@ -79,6 +87,17 @@ namespace BLL
             });
 
             generala.Ganador = jugadorMayorPuntaje;
+
+            /*if (!DeterminarEmpate(generala))
+            {
+                generala.Jugadores.ForEach(jugador =>
+                {
+                    int puntajeTotal = Jugador.CalcularPuntajeTotal(jugador);
+                    if (puntajeTotal > mayorPuntajeObtenido) jugadorMayorPuntaje = jugador;
+                });
+
+                generala.Ganador = jugadorMayorPuntaje;
+            }*/
         }
 
         private bool ContinuarJugando(BE.Generala generala)
@@ -301,7 +320,7 @@ namespace BLL
 
         public void EstablecerJugador(BE.Generala generala, BE.Usuario jugador)
         {
-            BE.Jugador nuevoJugador = Jugador.CrearJugador(jugador.Nombre);
+            BE.Jugador nuevoJugador = Jugador.CrearJugador(jugador.Id, jugador.Nombre);
 
             if (generala.Jugadores.Count <= 2) generala.Jugadores.Add(nuevoJugador);
         }

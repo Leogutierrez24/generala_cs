@@ -50,6 +50,7 @@
     <Compile Include="Helper.cs" />
     <Compile Include="Jugador.cs" />
     <Compile Include="Sesion.cs" />
+    <Compile Include="SesionPartida.cs" />
     <Compile Include="SesionUsuario.cs" />
     <Compile Include="Tablero.cs" />
     <Compile Include="TipoCategoria.cs" />
@@ -67,6 +68,9 @@
       <Project>{6f27da7f-73ce-4f83-ad6f-d4708cda7f13}</Project>
       <Name>DAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

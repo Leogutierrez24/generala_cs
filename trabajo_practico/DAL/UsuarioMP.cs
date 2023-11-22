@@ -44,7 +44,24 @@ namespace DAL
 
         public override List<BE.Usuario> Listar()
         {
-            throw new NotImplementedException();
+            List<BE.Usuario> usuarios = new List<BE.Usuario>();
+            acceso.Conectar();
+            DataTable tabla = acceso.Leer("USUARIO_LISTAR");
+            acceso.Desconectar();
+
+            if (tabla.Rows.Count > 0)
+            {
+                foreach(DataRow registro in tabla.Rows)
+                {
+                    BE.Usuario usuario = new BE.Usuario();
+                    usuario.Id = int.Parse(registro["id"].ToString());
+                    usuario.Nombre = registro["nombre"].ToString();
+                    usuario.Password = registro["password"].ToString();
+                    usuarios.Add(usuario);
+                }
+            }
+
+            return usuarios;
         }
 
         public BE.Usuario Obtener(string usuario, string password)
