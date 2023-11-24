@@ -73,7 +73,7 @@ namespace UI.Juego
             gestor.NuevoJuego(generala);
             DesbloquearBotones();
             DesbloquearBotonesDados();
-            CrearTablero();
+            ActualizarPuntajes();
             ActualizarDados();
             ActualizarDadosApartados();
             ActualizarCubilete();

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Juego;
 using UI.Login;
 using UI.Registros;
 
@@ -30,6 +31,8 @@ namespace UI
 
         private readonly Ingresar_frm _ingresarFrm;
 
+        private Tablero_frm _tableroFrm;
+
         public Inicio_frm()
         {
             InitializeComponent();
@@ -39,6 +42,13 @@ namespace UI
             usuario02 = null;
             _gestorSesion = new BLL.SesionUsuario();
             _gestorPartida = new BLL.SesionPartida();
+        }
+
+        private void Tablerofrm_Closed(object sender, EventArgs e)
+        {
+            this.Show();
+            _tableroFrm = null;
+            GC.Collect();
         }
 
         private void Ingresar_frm_LogearUsuario(object sender, UsuarioEventArgs e)
@@ -73,10 +83,11 @@ namespace UI
                 MessageBox.Show("¡Se necesitan dos usuarios para poder jugar!");
             } else
             {
-                _partida = _gestorPartida.NuevaPartida(usuario01, usuario02);
-                Juego.Tablero_frm form = new Juego.Tablero_frm(usuario01, usuario02, _partida, _gestorPartida);
-                form.Show();
                 this.Hide();
+                _partida = _gestorPartida.NuevaPartida(usuario01, usuario02);
+                _tableroFrm = new Tablero_frm(usuario01, usuario02, _partida, _gestorPartida);
+                _tableroFrm.Closed += Tablerofrm_Closed;
+                _tableroFrm.ShowDialog();
             }
         }
 
@@ -111,7 +122,7 @@ namespace UI
             if (usuario02 != null) CerrarSesion2_btn.Visible = true;
         }
 
-        private void CerrarSesion(Label label, Button btn)
+        private void CerrarSesionInputs(Label label, Button btn)
         {
             label.Text = "No hay usuario logeado.";
             btn.Visible = false;
@@ -120,7 +131,7 @@ namespace UI
         private void CerrarSesion1_btn_Click(object sender, EventArgs e)
         {
             usuario01 = null;
-            CerrarSesion(NombreUsuario1_lbl, CerrarSesion1_btn);
+            CerrarSesionInputs(NombreUsuario1_lbl, CerrarSesion1_btn);
             _gestorSesion.Guardar(_sesion01);
             _sesion01 = null;
         }
@@ -128,7 +139,7 @@ namespace UI
         private void CerrarSesion2_btn_Click(object sender, EventArgs e)
         {
             usuario02 = null;
-            CerrarSesion(NombreUsuario2_lbl, CerrarSesion2_btn);
+            CerrarSesionInputs(NombreUsuario2_lbl, CerrarSesion2_btn);
             _gestorSesion.Guardar(_sesion02);
             _sesion02 = null;
         }

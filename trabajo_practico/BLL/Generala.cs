@@ -63,7 +63,6 @@ namespace BLL
             generala.Jugadores.ForEach(jugador => ReiniciarCategorias(jugador));
             Tablero.RestablecerDadosApartados(generala.Tablero);
             Tablero.QuitarDadosTablero(generala.Tablero);
-            InicializarCubilete(generala);
             NuevoTurno(generala, generala.Jugadores[0]);
         }
 
@@ -83,7 +82,11 @@ namespace BLL
             generala.Jugadores.ForEach(jugador =>
             {
                 int puntajeTotal = Jugador.CalcularPuntajeTotal(jugador);
-                if (puntajeTotal > mayorPuntajeObtenido) jugadorMayorPuntaje = jugador;
+                if (puntajeTotal > mayorPuntajeObtenido)
+                {
+                    jugadorMayorPuntaje = jugador;
+                    mayorPuntajeObtenido = puntajeTotal;
+                }
             });
 
             generala.Ganador = jugadorMayorPuntaje;
