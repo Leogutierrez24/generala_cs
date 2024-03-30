@@ -9,3 +9,14 @@ I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\BLL
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\BLL\obj\Debug\BLL.csproj.CopyComplete
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\BLL\obj\Debug\BLL.dll
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\BLL\obj\Debug\BLL.pdb
+C:\proyectos\generala_cs\trabajo_practico\BLL\bin\Debug\BLL.dll
+C:\proyectos\generala_cs\trabajo_practico\BLL\bin\Debug\BLL.pdb
+C:\proyectos\generala_cs\trabajo_practico\BLL\bin\Debug\BE.dll
+C:\proyectos\generala_cs\trabajo_practico\BLL\bin\Debug\DAL.dll
+C:\proyectos\generala_cs\trabajo_practico\BLL\bin\Debug\BE.pdb
+C:\proyectos\generala_cs\trabajo_practico\BLL\bin\Debug\DAL.pdb
+C:\proyectos\generala_cs\trabajo_practico\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+C:\proyectos\generala_cs\trabajo_practico\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\proyectos\generala_cs\trabajo_practico\BLL\obj\Debug\BLL.csproj.Up2Date
+C:\proyectos\generala_cs\trabajo_practico\BLL\obj\Debug\BLL.dll
+C:\proyectos\generala_cs\trabajo_practico\BLL\obj\Debug\BLL.pdb

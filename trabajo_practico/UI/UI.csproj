@@ -77,7 +77,7 @@
     <Compile Include="Juego\Tablero_frm.Designer.cs">
       <DependentUpon>Tablero_frm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\UsuarioEventArgs.cs" />
+    <Compile Include="Login\SesionEventArgs.cs" />
     <Compile Include="Login\Ingresar_frm.cs">
       <SubType>Form</SubType>
     </Compile>

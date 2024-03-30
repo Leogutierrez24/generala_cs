@@ -12,7 +12,7 @@ namespace DAL
     {
         private SqlConnection _conexion;
 
-        private readonly string _dataSource = "LEO";
+        private readonly string _dataSource = "DESKTOP-33NRQM9";
 
         public void Conectar()
         {

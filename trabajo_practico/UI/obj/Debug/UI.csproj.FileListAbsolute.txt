@@ -45,3 +45,27 @@ I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Login.Ingresar_frm.resources
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Juego.ResumenPartida_frm.resources
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\UI\obj\Debug\UI.Registros.Registro_Frm.resources
+C:\proyectos\generala_cs\trabajo_practico\UI\bin\Debug\UI.exe.config
+C:\proyectos\generala_cs\trabajo_practico\UI\bin\Debug\UI.exe
+C:\proyectos\generala_cs\trabajo_practico\UI\bin\Debug\UI.pdb
+C:\proyectos\generala_cs\trabajo_practico\UI\bin\Debug\BE.dll
+C:\proyectos\generala_cs\trabajo_practico\UI\bin\Debug\BLL.dll
+C:\proyectos\generala_cs\trabajo_practico\UI\bin\Debug\DAL.dll
+C:\proyectos\generala_cs\trabajo_practico\UI\bin\Debug\BE.pdb
+C:\proyectos\generala_cs\trabajo_practico\UI\bin\Debug\BLL.pdb
+C:\proyectos\generala_cs\trabajo_practico\UI\bin\Debug\DAL.pdb
+C:\proyectos\generala_cs\trabajo_practico\UI\obj\Debug\UI.csproj.AssemblyReference.cache
+C:\proyectos\generala_cs\trabajo_practico\UI\obj\Debug\UI.Inicio_frm.resources
+C:\proyectos\generala_cs\trabajo_practico\UI\obj\Debug\UI.Juego.CerrarCategoria_frm.resources
+C:\proyectos\generala_cs\trabajo_practico\UI\obj\Debug\UI.Juego.Reglas_frm.resources
+C:\proyectos\generala_cs\trabajo_practico\UI\obj\Debug\UI.Juego.ResumenPartida_frm.resources
+C:\proyectos\generala_cs\trabajo_practico\UI\obj\Debug\UI.Juego.Tablero_frm.resources
+C:\proyectos\generala_cs\trabajo_practico\UI\obj\Debug\UI.Login.Ingresar_frm.resources
+C:\proyectos\generala_cs\trabajo_practico\UI\obj\Debug\UI.Login.Registrar_frm.resources
+C:\proyectos\generala_cs\trabajo_practico\UI\obj\Debug\UI.Properties.Resources.resources
+C:\proyectos\generala_cs\trabajo_practico\UI\obj\Debug\UI.Registros.Registro_Frm.resources
+C:\proyectos\generala_cs\trabajo_practico\UI\obj\Debug\UI.csproj.GenerateResource.cache
+C:\proyectos\generala_cs\trabajo_practico\UI\obj\Debug\UI.csproj.CoreCompileInputs.cache
+C:\proyectos\generala_cs\trabajo_practico\UI\obj\Debug\UI.csproj.Up2Date
+C:\proyectos\generala_cs\trabajo_practico\UI\obj\Debug\UI.exe
+C:\proyectos\generala_cs\trabajo_practico\UI\obj\Debug\UI.pdb

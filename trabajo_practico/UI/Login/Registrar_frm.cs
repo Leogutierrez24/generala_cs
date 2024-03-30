@@ -24,7 +24,7 @@ namespace UI.Login
         private bool ComprobarCampos()
         {
             bool inputsVacios = false;
-            if (string.IsNullOrEmpty(Usuario_textBox.Text) || string.IsNullOrEmpty(Password_textBox.Text) || string.IsNullOrEmpty(PasswordRep_textBox.Text)) inputsVacios = true;
+            if (string.IsNullOrEmpty(Usuario_textBox.Text) || string.IsNullOrEmpty(Password_textBox.Text) || string.IsNullOrEmpty(PasswordRep_textBox.Text) || string.IsNullOrEmpty(Nick_textBox.Text)) inputsVacios = true;
             return inputsVacios;
         }
 

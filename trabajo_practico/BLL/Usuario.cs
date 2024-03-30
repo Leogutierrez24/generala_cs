@@ -9,11 +9,12 @@ namespace BLL
 {
     public class Usuario
     {
-        public static BE.Usuario CrearUsuario(string usuario, string password)
+        public static BE.Usuario CrearUsuario(string usuario, string apodo, string password)
         {
             BE.Usuario nuevoUsuario = new BE.Usuario
             {
                 Nombre = usuario,
+                Nick = apodo,
                 Password = password
             };
             return nuevoUsuario;

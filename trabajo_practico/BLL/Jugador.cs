@@ -8,7 +8,20 @@ namespace BLL
 {
     public class Jugador
     {
-        public static BE.Jugador CrearJugador(int id, string nombre)
+        private static BLL.Jugador instance = null;
+
+        private Jugador() { }
+
+        public static BLL.Jugador getInstance()
+        {
+            if (instance == null)
+            {
+                instance = new BLL.Jugador();
+            }
+            return instance;
+        }
+
+        public BE.Jugador CrearJugador(int id, string nombre)
         {
             BE.Jugador jugador = new BE.Jugador();
             jugador.UsuarioID = id;

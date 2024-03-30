@@ -6,13 +6,20 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public abstract class Sesion
+    public class Sesion
     {
 		protected int _id;
 		public int Id
 		{
 			get { return _id; }
 			set { _id = value; }
+		}
+
+		protected BE.Usuario _usuario;
+		public BE.Usuario Usuario
+		{
+			get { return _usuario; }
+			set { _usuario = value; }
 		}
 
 		private DateTime _inicio;

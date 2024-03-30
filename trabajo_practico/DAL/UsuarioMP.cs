@@ -83,6 +83,7 @@ namespace DAL
                 {
                     Id = int.Parse(registro["id"].ToString()),
                     Nombre = registro["nombre"].ToString(),
+                    Nick = registro["apodo"].ToString(),
                     Password = registro["password"].ToString()
                 };
             }

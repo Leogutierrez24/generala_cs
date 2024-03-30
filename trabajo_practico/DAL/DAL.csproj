@@ -44,8 +44,8 @@
     <Compile Include="Acceso.cs" />
     <Compile Include="Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SesionPartidaMP.cs" />
-    <Compile Include="SesionUsuarioMP.cs" />
+    <Compile Include="PartidaMP.cs" />
+    <Compile Include="SesionMP.cs" />
     <Compile Include="UsuarioMP.cs" />
   </ItemGroup>
   <ItemGroup>

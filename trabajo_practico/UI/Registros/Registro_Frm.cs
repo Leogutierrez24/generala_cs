@@ -12,19 +12,19 @@ namespace UI.Registros
 {
     public partial class Registro_Frm : Form
     {
-        private readonly BLL.SesionUsuario _gestorSesionUsuario;
+        private readonly BLL.Sesion _gestorSesionUsuario;
 
-        private readonly BLL.SesionPartida _gestorSesionPartida;
+        private readonly BLL.Partida _gestorSesionPartida;
 
         private List<BE.SesionUsuario> _listaSesiones = new List<BE.SesionUsuario>();
 
-        private List<BE.SesionPartida> _listaPartidas = new List<BE.SesionPartida>();
+        private List<BE.Partida> _listaPartidas = new List<BE.Partida>();
 
         public Registro_Frm()
         {
             InitializeComponent();
-            _gestorSesionUsuario = new BLL.SesionUsuario();
-            _gestorSesionPartida = new BLL.SesionPartida();
+            _gestorSesionUsuario = new BLL.Sesion();
+            _gestorSesionPartida = new BLL.Partida();
         }
 
         private void CargarSesiones()

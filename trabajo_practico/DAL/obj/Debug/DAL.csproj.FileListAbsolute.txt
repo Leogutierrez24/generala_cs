@@ -7,3 +7,12 @@ I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\DAL
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\DAL\obj\Debug\DAL.csproj.CopyComplete
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\DAL\obj\Debug\DAL.dll
 I:\Facultad\segundo año\diseño y arquitectura\development\trabajo_practico\DAL\obj\Debug\DAL.pdb
+C:\proyectos\generala_cs\trabajo_practico\DAL\bin\Debug\DAL.dll
+C:\proyectos\generala_cs\trabajo_practico\DAL\bin\Debug\DAL.pdb
+C:\proyectos\generala_cs\trabajo_practico\DAL\bin\Debug\BE.dll
+C:\proyectos\generala_cs\trabajo_practico\DAL\bin\Debug\BE.pdb
+C:\proyectos\generala_cs\trabajo_practico\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\proyectos\generala_cs\trabajo_practico\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\proyectos\generala_cs\trabajo_practico\DAL\obj\Debug\DAL.csproj.Up2Date
+C:\proyectos\generala_cs\trabajo_practico\DAL\obj\Debug\DAL.dll
+C:\proyectos\generala_cs\trabajo_practico\DAL\obj\Debug\DAL.pdb

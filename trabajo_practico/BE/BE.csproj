@@ -49,8 +49,7 @@
     <Compile Include="Generala.cs" />
     <Compile Include="Jugador.cs" />
     <Compile Include="Sesion.cs" />
-    <Compile Include="SesionPartida.cs" />
-    <Compile Include="SesionUsuario.cs" />
+    <Compile Include="Partida.cs" />
     <Compile Include="Tablero.cs" />
     <Compile Include="TipoCategoria.cs" />
     <Compile Include="Tiro.cs" />

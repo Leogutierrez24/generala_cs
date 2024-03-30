@@ -101,23 +101,23 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 195);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.Size = new System.Drawing.Size(78, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Usuario 01:";
+            this.label2.Text = "Primer Usuario:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 224);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 13);
+            this.label3.Size = new System.Drawing.Size(92, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Usuario 02:";
+            this.label3.Text = "Segundo Usuario:";
             // 
             // NombreUsuario1_lbl
             // 
             this.NombreUsuario1_lbl.AutoSize = true;
-            this.NombreUsuario1_lbl.Location = new System.Drawing.Point(79, 195);
+            this.NombreUsuario1_lbl.Location = new System.Drawing.Point(110, 195);
             this.NombreUsuario1_lbl.Name = "NombreUsuario1_lbl";
             this.NombreUsuario1_lbl.Size = new System.Drawing.Size(111, 13);
             this.NombreUsuario1_lbl.TabIndex = 7;
@@ -126,7 +126,7 @@
             // NombreUsuario2_lbl
             // 
             this.NombreUsuario2_lbl.AutoSize = true;
-            this.NombreUsuario2_lbl.Location = new System.Drawing.Point(79, 224);
+            this.NombreUsuario2_lbl.Location = new System.Drawing.Point(110, 224);
             this.NombreUsuario2_lbl.Name = "NombreUsuario2_lbl";
             this.NombreUsuario2_lbl.Size = new System.Drawing.Size(111, 13);
             this.NombreUsuario2_lbl.TabIndex = 8;
@@ -135,7 +135,7 @@
             // CerrarSesion1_btn
             // 
             this.CerrarSesion1_btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CerrarSesion1_btn.Location = new System.Drawing.Point(199, 190);
+            this.CerrarSesion1_btn.Location = new System.Drawing.Point(251, 190);
             this.CerrarSesion1_btn.Name = "CerrarSesion1_btn";
             this.CerrarSesion1_btn.Size = new System.Drawing.Size(93, 23);
             this.CerrarSesion1_btn.TabIndex = 9;
@@ -147,7 +147,7 @@
             // CerrarSesion2_btn
             // 
             this.CerrarSesion2_btn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CerrarSesion2_btn.Location = new System.Drawing.Point(199, 219);
+            this.CerrarSesion2_btn.Location = new System.Drawing.Point(251, 219);
             this.CerrarSesion2_btn.Name = "CerrarSesion2_btn";
             this.CerrarSesion2_btn.Size = new System.Drawing.Size(93, 23);
             this.CerrarSesion2_btn.TabIndex = 10;

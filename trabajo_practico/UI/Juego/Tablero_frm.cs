@@ -22,18 +22,18 @@ namespace UI.Juego
 
         private readonly ResumenPartida_frm _resumenPartida;
 
-        private BE.SesionPartida _partida;
+        private BE.Partida _partida;
 
-        private readonly BLL.SesionPartida _gestorPartida;
+        private BLL.Partida _gestorPartida;
 
-        public Tablero_frm(BE.Usuario jugador01, BE.Usuario jugador02, BE.SesionPartida partida, BLL.SesionPartida gestorPartida)
+        public Tablero_frm(BE.Usuario jugador01, BE.Usuario jugador02)
         {
             InitializeComponent();
             generala = gestor.InicializarGenerala();
             gestor.EstablecerJugador(generala, jugador01);
             gestor.EstablecerJugador(generala, jugador02);
-            _partida = partida;
-            _gestorPartida = gestorPartida;
+            _gestorPartida = BLL.Partida.getInstance();
+            _partida = _gestorPartida.NuevaPartida(jugador01, jugador02);
 
             _resumenPartida = new ResumenPartida_frm(generala, gestor);
             _resumenPartida.NuevoJuego += ResumenPartida_frm_NuevoJuego;
@@ -238,7 +238,7 @@ namespace UI.Juego
                         _resumenPartida.ShowDialog();
                         if (_volverJugar)
                         {
-                            BE.SesionPartida nuevaPartida = _gestorPartida.NuevaPartida(_partida.Usuario01, _partida.Usuario02);
+                            BE.Partida nuevaPartida = _gestorPartida.NuevaPartida(_partida.Jugador01, _partida.Jugador02);
                             _partida = nuevaPartida;
                             ReiniciarJuego();
                         } else this.Close();

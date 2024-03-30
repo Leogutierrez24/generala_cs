@@ -12,16 +12,19 @@ namespace UI.Login
 {
     public partial class Ingresar_frm : Form
     {
-        private readonly BLL.Usuario gestor;
+        private readonly BLL.Usuario gUsuario;
 
-        public delegate void IngresarDelegado(object sender, UsuarioEventArgs e);
+        private readonly BLL.Sesion gSesion;
+
+        public delegate void IngresarDelegado(object sender, SesionEventArgs e);
 
         public event IngresarDelegado LogearUsuario;
 
         public Ingresar_frm()
         {
             InitializeComponent();
-            gestor = new BLL.Usuario();
+            gUsuario = new BLL.Usuario();
+            gSesion = new BLL.Sesion();
         }
 
         private bool CamposVacios()
@@ -65,11 +68,12 @@ namespace UI.Login
                    Password = Password_textBox.Text,
                 };
 
-                u = gestor.Ingresar(u);
+                u = gUsuario.Ingresar(u);
 
                 if (u != null)
                 {
-                    LogearUsuario?.Invoke(this, new UsuarioEventArgs(u));
+                    BE.Sesion nuevaSesion = gSesion.NuevaSesion(u);
+                    LogearUsuario?.Invoke(this, new SesionEventArgs(nuevaSesion));
                     LimpiarInputs();
                     this.Close();
                 }

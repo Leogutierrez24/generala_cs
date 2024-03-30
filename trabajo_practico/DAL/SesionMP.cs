@@ -9,18 +9,18 @@ using System.Data.SqlClient;
 
 namespace DAL
 {
-    public class SesionUsuarioMP : Mapper<BE.SesionUsuario>
+    public class SesionMP : Mapper<BE.Sesion>
     {
         private readonly UsuarioMP _mapper = new UsuarioMP();
 
         private readonly List<BE.Usuario> _usuarios;
 
-        public SesionUsuarioMP()
+        public SesionMP()
         {
             _usuarios = _mapper.Listar();
         }
 
-        public override void Actualizar(SesionUsuario obj)
+        public override void Actualizar(Sesion obj)
         {
             throw new NotImplementedException();
         }
@@ -30,7 +30,7 @@ namespace DAL
             throw new NotImplementedException();
         }
 
-        public override void Insertar(SesionUsuario obj)
+        public override void Insertar(Sesion obj)
         {
             acceso.Conectar();
             List<SqlParameter> parametros = new List<SqlParameter>
@@ -43,9 +43,9 @@ namespace DAL
             acceso.Desconectar();
         }
 
-        public override List<BE.SesionUsuario> Listar()
+        public override List<BE.Sesion> Listar()
         {
-            List<BE.SesionUsuario> sesiones = new List<BE.SesionUsuario>();
+            List<BE.Sesion> sesiones = new List<BE.Sesion>();
             acceso.Conectar();
             DataTable tabla = acceso.Leer("SESION_USUARIO_LISTAR");
             acceso.Desconectar();
@@ -54,7 +54,7 @@ namespace DAL
             {
                 foreach(DataRow registro in tabla.Rows)
                 {
-                    BE.SesionUsuario sesion = new BE.SesionUsuario();
+                    BE.Sesion sesion = new BE.Sesion();
                     sesion.Id = int.Parse(registro["id"].ToString());
                     sesion.Usuario = _usuarios.Find(usuario => usuario.Id == int.Parse(registro["usuario_id"].ToString()));
                     sesion.Inicio = Convert.ToDateTime(registro["inicio"].ToString());

@@ -15,11 +15,11 @@ namespace BE
             set { _id = value; }
         }
 
-        private string _nombre;
+        private string _nombreUsuario;
         public string Nombre
         {
-            get { return _nombre; }
-            set { _nombre = value; }
+            get { return _nombreUsuario; }
+            set { _nombreUsuario = value; }
         }
 
         private string _password;
@@ -27,6 +27,13 @@ namespace BE
         {
             get { return _password; }
             set { _password = value; }
+        }
+
+        private string _nick;
+        public string Nick
+        {
+            get { return _nick; }
+            set { _nick = value; }
         }
 
         private int _victorias;
